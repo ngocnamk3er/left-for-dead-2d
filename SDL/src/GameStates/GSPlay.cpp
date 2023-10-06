@@ -85,13 +85,15 @@ void GSPlay::HandleKeyEvents(SDL_Event& e)
 			m_KeyPress |= 1;
 			break;
 		case SDLK_DOWN:
-			printf("MOVE BACK");
+			printf("MOVE DOWN");
 			m_KeyPress |= 1 << 1;
 			break;
 		case SDLK_RIGHT:
+			printf("MOVE RIGHT");
 			m_KeyPress |= 1 << 2;
 			break;
 		case SDLK_UP:
+			printf("MOVE UP");
 			m_KeyPress |= 1 << 3;
 			break;
 		default:
@@ -155,7 +157,7 @@ void GSPlay::Update(float deltaTime)
 		if (m_KeyPress == 1)
 		{
 			
-		//	it->MoveLeft(deltaTime);
+			it->MoveLeft(deltaTime);
 		}
 		it->Update(deltaTime);
 	}
