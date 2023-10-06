@@ -6,8 +6,7 @@
 //Screen dimension constants
 #include"SDL_mixer.h"
 #include"KeyState.h"
-const int SCREEN_FPS = 60;
-const int SCREEN_TICKS_PER_FRAME = 1000 / SCREEN_FPS;
+const Uint32 targetTime = 1 / LIMIT_FPS;
 Game::Game()
 {
 	//Init create window for rendering
@@ -60,15 +59,17 @@ void Game::Run()
 				Uint32 current = SDL_GetTicks();
 
 				float dT = (current - lastUpdate) / 1000.0f; // to convert to seconds
-				Update(dT);
-				// Set updated time
+
 				lastUpdate = current;
-	
 				////Limit FPS
-				Uint32 targetTime = 1000 / LIMIT_FPS;
 				if (dT < targetTime)
 				{
+					Update(dT);
 					SDL_Delay(targetTime - dT);
+				}
+				else
+				{
+					Update(dT);	
 				}
 				//Update screen
 				SDL_RenderPresent(Renderer::GetInstance()->GetRenderer());
