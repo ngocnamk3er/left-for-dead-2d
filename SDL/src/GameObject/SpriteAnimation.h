@@ -1,7 +1,8 @@
 #pragma once
 #include "BaseObject.h"
 #include <SDL_render.h>
-class TextureManager;
+#include "TextureManager.h"
+//class TextureManager;
 class SpriteAnimation : public BaseObject{
 protected:
 	Vector2			m_Vec2DPos;

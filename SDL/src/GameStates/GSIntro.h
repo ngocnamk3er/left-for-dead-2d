@@ -1,6 +1,7 @@
 #pragma once
 #include "GameStateBase.h"
-#include "GameObject/TextureManager.h"
+//#include "GameObject/TextureManager.h"
+#include "GameObject/Sprite2D.h"
 class GSIntro : public GameStateBase
 {
 public:

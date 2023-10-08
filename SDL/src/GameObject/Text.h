@@ -2,7 +2,8 @@
 #include "SDL.h"
 #include <string>
 #include <memory>
-#include "TextureManager.h"
+//#include "TextureManager.h"
+#include "Sprite2D.h"
 class Text: public Sprite2D
 {
 public:

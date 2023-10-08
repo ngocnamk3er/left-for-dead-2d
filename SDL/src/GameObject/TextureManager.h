@@ -4,7 +4,7 @@
 #include "Renderer.h"
 
 #include "GameManager/Singleton.h"
-#include "Sprite2D.h"
+//#include "Sprite2D.h"
 #include <vector>
 class TextureManager  
 {

@@ -4,7 +4,7 @@
 #include "SDL.h"
 #include <SDL_image.h>
 #include "SDL_ttf.h"
-class TextureManager;
+#include "TextureManager.h";
 class BaseObject
 {
 protected:
