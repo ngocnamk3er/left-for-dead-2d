@@ -1,24 +1,14 @@
 #pragma once
 #include "GameStateBase.h"
 #include "GameObject/MouseButton.h"
-#include "Sound.h"
-class Sprite2D;
-class SpriteAnimation;
-
-struct KeySet {
-	bool Left;
-	bool Down;
-	bool Right;
-	bool Up;
-};
-
-
-class GSPlay :
+#include"GameObject/Text.h"
+#include "GameObject/Sound.h"
+class GSHelp :
 	public GameStateBase
 {
 public:
-	GSPlay();
-	~GSPlay();
+	GSHelp();
+	~GSHelp();
 
 	void	Init() override;
 	void	Exit() override;
@@ -32,16 +22,11 @@ public:
 	void	HandleMouseMoveEvents(int x, int y) override;
 	void	Update(float deltaTime) override;
 	void	Draw(SDL_Renderer* renderer) override;
-	KeySet m_KeyPress;
 
 private:
-	std::shared_ptr<Sprite2D>	m_background;
-	//std::shared_ptr<Text>		m_score;
+	std::shared_ptr<Sprite2D>				m_background;
 	std::list<std::shared_ptr<MouseButton>>	m_listButton;
-	std::list<std::shared_ptr<SpriteAnimation>>	m_listAnimation;
-	std::shared_ptr<SpriteAnimation> obj;
-	std::shared_ptr<MouseButton> button;
-	
-	float time = 0.0f;
-	float m_Velocity = 10.0f;
+	std::shared_ptr<Text>					m_textHelp;
+	SDL_Color m_textColor;
+	TTF_Font* m_Font;
 };

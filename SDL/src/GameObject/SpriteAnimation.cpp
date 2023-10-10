@@ -85,6 +85,7 @@ int SpriteAnimation::GetHeight()
 
 void SpriteAnimation::MoveLeft(float deltaTime)
 {
+	SetFlip(SDL_FLIP_NONE);
 	m_position.x -= 20 * deltaTime;
 }
 
@@ -95,6 +96,7 @@ void SpriteAnimation::MoveDown(float deltaTime)
 
 void SpriteAnimation::MoveRight(float deltaTime)
 {
+	SetFlip(SDL_FLIP_HORIZONTAL);
 	m_position.x += 20 * deltaTime;
 }
 

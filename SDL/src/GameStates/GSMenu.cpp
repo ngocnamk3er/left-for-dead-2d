@@ -61,6 +61,7 @@ void GSMenu::Init()
 	btnCredit->Set2DPosition((SCREEN_WIDTH - btnCredit->GetWidth()) / 2, SCREEN_HEIDHT / 2 + 280);
 	btnCredit->SetSize(100, 100);
 	btnCredit->SetOnClick([]() {
+		printf("check");
 		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_CREDIT);
 		});
 	m_listButton.push_back(btnCredit);

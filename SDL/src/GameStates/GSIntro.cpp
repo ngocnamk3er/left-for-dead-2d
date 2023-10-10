@@ -64,4 +64,5 @@ void GSIntro::Update(float deltaTime)
 void GSIntro::Draw(SDL_Renderer* renderer)
 {
 	m_logo->Draw(renderer);
+
 }

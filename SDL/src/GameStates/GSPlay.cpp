@@ -41,23 +41,16 @@ void GSPlay::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("Actor1_2.tga");
 	obj = std::make_shared<SpriteAnimation>(texture, 2, 9, 6, 0.2f);
 	obj->SetFlip(SDL_FLIP_HORIZONTAL);
-	obj->SetSize(40, 50);
+	obj->SetSize(64, 64);
 	obj->Set2DPosition(240, 400);
 	//Camera::GetInstance()->SetTarget(obj);
 	m_listAnimation.push_back(obj);
 
 
-	//Monster
-	texture = ResourceManagers::GetInstance()->GetTexture("monster/antlered rascal/AntleredRascal.png");
-	obj = std::make_shared<SpriteAnimation>(texture, 1, 4, 1, 0.2f);
-	obj->SetFlip(SDL_FLIP_HORIZONTAL);
-	obj->SetSize(50, 50);
-	obj->Set2DPosition(400, 400);
-	//Camera::GetInstance()->SetTarget(obj);
-	m_listAnimation.push_back(obj);
-
-
-	m_KeyPress = 0;
+	m_KeyPress.Left = 0;
+	m_KeyPress.Down = 0;
+	m_KeyPress.Right = 0;
+	m_KeyPress.Up = 0;
 
 }
 
@@ -93,19 +86,23 @@ void GSPlay::HandleKeyEvents(SDL_Event& e)
 		{
 		case SDLK_LEFT:
 			printf("MOVE LEFT\n");
-			m_KeyPress |= 1;
+			//m_KeyPress |= 1;
+			m_KeyPress.Left = true;
 			break;
 		case SDLK_DOWN:
 			printf("MOVE DOWN\n");
-			m_KeyPress |= 1 << 1;
+			//m_KeyPress |= 1 << 1;
+			m_KeyPress.Down = true;
 			break;
 		case SDLK_RIGHT:
 			printf("MOVE RIGHT\n");
-			m_KeyPress |= 1 << 2;
+			m_KeyPress.Right = true;
+			//m_KeyPress |= 1 << 2;
 			break;
 		case SDLK_UP:
 			printf("MOVE UP\n");
-			m_KeyPress |= 1 << 3;
+			m_KeyPress.Up = true;
+			//m_KeyPress |= 1 << 3;
 			break;
 		default:
 			break;
@@ -118,16 +115,20 @@ void GSPlay::HandleKeyEvents(SDL_Event& e)
 		switch (e.key.keysym.sym)
 		{
 		case SDLK_LEFT:
-			m_KeyPress ^= 1;
+			m_KeyPress.Left = false;
+			//m_KeyPress ^= 1;
 			break;
 		case SDLK_DOWN:
-			m_KeyPress ^= 1 << 1;
+			m_KeyPress.Down = false;
+			//m_KeyPress ^= 1 << 1;
 			break;
 		case SDLK_RIGHT:
-			m_KeyPress ^= 1 << 2;
+			m_KeyPress.Right = false;
+			//m_KeyPress ^= 1 << 2;
 			break;
 		case SDLK_UP:
-			m_KeyPress ^= 1 << 3;
+			m_KeyPress.Up = false;
+			//m_KeyPress ^= 1 << 3;
 			break;
 		default:
 			break;
@@ -152,11 +153,11 @@ void GSPlay::HandleMouseMoveEvents(int x, int y)
 
 void GSPlay::Update(float deltaTime)
 {
-	switch (m_KeyPress)//Handle Key event
-	{
-	default:
-		break;
-	}
+	//switch (m_KeyPress)//Handle Key event
+	//{
+	//default:
+	//	break;
+	//}
 	// Key State event
 
 	for (auto it : m_listButton)
@@ -165,30 +166,17 @@ void GSPlay::Update(float deltaTime)
 	}
 	for (auto it : m_listAnimation)
 	{
-		switch (m_KeyPress)
-		{
-		case 1:
-		{
+		if (m_KeyPress.Left) {
 			it->MoveLeft(deltaTime);
-			break;
 		}
-		case 2:
-		{
+		if (m_KeyPress.Down) {
 			it->MoveDown(deltaTime);
-			break;
 		}
-		case 4:
-		{
+		if (m_KeyPress.Right) {
 			it->MoveRight(deltaTime);
-			break;
 		}
-		case 8:
-		{
+		if (m_KeyPress.Up) {
 			it->MoveTop(deltaTime);
-			break;
-		}
-		default:
-			break;
 		}
 
 		it->Update(deltaTime);
