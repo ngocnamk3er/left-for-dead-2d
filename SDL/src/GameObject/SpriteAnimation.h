@@ -36,5 +36,10 @@ public:
 	void		SetSize(int width, int height);
 	int GetWidth();
 	int GetHeight();
-	void MoveLeft(float deltaTime);
+	virtual void MoveLeft(float deltaTime);
+	virtual void MoveTop(float deltaTime);
+	virtual void MoveRight(float deltaTime);
+	virtual void MoveDown(float deltaTime);
+	/*virtual void MoveLeft(float deltaTime);
+	virtual void MoveLeft(float deltaTime);*/
 };

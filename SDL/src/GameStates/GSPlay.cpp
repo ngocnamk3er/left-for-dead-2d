@@ -22,14 +22,14 @@ void GSPlay::Init()
 	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_play1.tga");
 
 	// background
-	
-	m_background = std::make_shared<Sprite2D>( texture, SDL_FLIP_NONE);
+
+	m_background = std::make_shared<Sprite2D>(texture, SDL_FLIP_NONE);
 	m_background->SetSize(SCREEN_WIDTH, SCREEN_HEIDHT);
 	m_background->Set2DPosition(0, 0);
 
 	// button close
 	texture = ResourceManagers::GetInstance()->GetTexture("btn_close.tga");
-	button = std::make_shared<MouseButton>( texture, SDL_FLIP_NONE);
+	button = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
 	button->SetSize(50, 50);
 	button->Set2DPosition(SCREEN_WIDTH - 50, 10);
 	button->SetOnClick([this]() {
@@ -37,17 +37,28 @@ void GSPlay::Init()
 		});
 	m_listButton.push_back(button);
 
-   // Animation 
+	// Animation 
 	texture = ResourceManagers::GetInstance()->GetTexture("Actor1_2.tga");
-	obj = std::make_shared<SpriteAnimation>( texture, 2, 9, 6, 0.2f);
+	obj = std::make_shared<SpriteAnimation>(texture, 2, 9, 6, 0.2f);
 	obj->SetFlip(SDL_FLIP_HORIZONTAL);
 	obj->SetSize(40, 50);
 	obj->Set2DPosition(240, 400);
 	//Camera::GetInstance()->SetTarget(obj);
 	m_listAnimation.push_back(obj);
 
+
+	//Monster
+	texture = ResourceManagers::GetInstance()->GetTexture("monster/antlered rascal/AntleredRascal.png");
+	obj = std::make_shared<SpriteAnimation>(texture, 1, 4, 1, 0.2f);
+	obj->SetFlip(SDL_FLIP_HORIZONTAL);
+	obj->SetSize(50, 50);
+	obj->Set2DPosition(400, 400);
+	//Camera::GetInstance()->SetTarget(obj);
+	m_listAnimation.push_back(obj);
+
+
 	m_KeyPress = 0;
-	
+
 }
 
 void GSPlay::Exit()
@@ -75,25 +86,25 @@ void GSPlay::HandleEvents()
 void GSPlay::HandleKeyEvents(SDL_Event& e)
 {
 	//If a key was pressed
-	if (e.type == SDL_KEYDOWN)// && e.key.repeat == 0) //For e.key.repeat it's because key repeat is enabled by default and if you press and hold a key it will report multiple key presses. That means we have to check if the key press is the first one because we only care when the key was first pressed.
+	if (e.type == SDL_KEYDOWN)//&& e.key.repeat == 0) //For e.key.repeat it's because key repeat is enabled by default and if you press and hold a key it will report multiple key presses. That means we have to check if the key press is the first one because we only care when the key was first pressed.
 	{
 		//Adjust the velocity
 		switch (e.key.keysym.sym)
 		{
 		case SDLK_LEFT:
-			printf("MOVE LEFT");
+			printf("MOVE LEFT\n");
 			m_KeyPress |= 1;
 			break;
 		case SDLK_DOWN:
-			printf("MOVE DOWN");
+			printf("MOVE DOWN\n");
 			m_KeyPress |= 1 << 1;
 			break;
 		case SDLK_RIGHT:
-			printf("MOVE RIGHT");
+			printf("MOVE RIGHT\n");
 			m_KeyPress |= 1 << 2;
 			break;
 		case SDLK_UP:
-			printf("MOVE UP");
+			printf("MOVE UP\n");
 			m_KeyPress |= 1 << 3;
 			break;
 		default:
@@ -101,7 +112,7 @@ void GSPlay::HandleKeyEvents(SDL_Event& e)
 		}
 	}
 	////Key Up
-	else if (e.type == SDL_KEYUP )//&& e.key.repeat == 0)
+	else if (e.type == SDL_KEYUP)//&& e.key.repeat == 0)
 	{
 		//Adjust the velocity
 		switch (e.key.keysym.sym)
@@ -154,11 +165,32 @@ void GSPlay::Update(float deltaTime)
 	}
 	for (auto it : m_listAnimation)
 	{
-		if (m_KeyPress == 1)
+		switch (m_KeyPress)
 		{
-			
+		case 1:
+		{
 			it->MoveLeft(deltaTime);
+			break;
 		}
+		case 2:
+		{
+			it->MoveDown(deltaTime);
+			break;
+		}
+		case 4:
+		{
+			it->MoveRight(deltaTime);
+			break;
+		}
+		case 8:
+		{
+			it->MoveTop(deltaTime);
+			break;
+		}
+		default:
+			break;
+		}
+
 		it->Update(deltaTime);
 	}
 
@@ -175,7 +207,7 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 	{
 		it->Draw(renderer);
 	}
-//	obj->Draw(renderer);
+	//	obj->Draw(renderer);
 	for (auto it : m_listAnimation)
 	{
 		it->Draw(renderer);
