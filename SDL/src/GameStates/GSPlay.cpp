@@ -38,9 +38,8 @@ void GSPlay::Init()
 	m_listButton.push_back(button);
 
 	// Animation 
-	texture = ResourceManagers::GetInstance()->GetTexture("Actor1_2.tga");
-	obj = std::make_shared<SpriteAnimation>(texture, 2, 9, 6, 0.2f);
-	obj->SetFlip(SDL_FLIP_HORIZONTAL);
+	texture = ResourceManagers::GetInstance()->GetTexture("MainCharacter/3 Dude_Monster/Dude_Monster_Run_6.png");
+	obj = std::make_shared<SpriteAnimation>(texture, 1, 6, 1, 0.15f);
 	obj->SetSize(64, 64);
 	obj->Set2DPosition(240, 400);
 	//Camera::GetInstance()->SetTarget(obj);

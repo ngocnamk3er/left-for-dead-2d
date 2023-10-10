@@ -85,22 +85,22 @@ int SpriteAnimation::GetHeight()
 
 void SpriteAnimation::MoveLeft(float deltaTime)
 {
-	SetFlip(SDL_FLIP_NONE);
-	m_position.x -= 20 * deltaTime;
+	SetFlip(SDL_FLIP_HORIZONTAL);
+	m_position.x -= 90 * deltaTime;
 }
 
 void SpriteAnimation::MoveDown(float deltaTime)
 {
-	m_position.y += 20 * deltaTime;
+	m_position.y += 90 * deltaTime;
 }
 
 void SpriteAnimation::MoveRight(float deltaTime)
 {
-	SetFlip(SDL_FLIP_HORIZONTAL);
-	m_position.x += 20 * deltaTime;
+	SetFlip(SDL_FLIP_NONE);
+	m_position.x += 90 * deltaTime;
 }
 
 void SpriteAnimation::MoveTop(float deltaTime)
 {
-	m_position.y -= 20 * deltaTime;
+	m_position.y -= 90 * deltaTime;
 }
