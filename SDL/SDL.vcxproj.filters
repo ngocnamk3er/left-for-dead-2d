@@ -22,6 +22,12 @@
     <Filter Include="Source Files\GameObjects">
       <UniqueIdentifier>{b61357b4-8507-48e7-95d0-cba6485693e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameState\Entities">
+      <UniqueIdentifier>{946af243-fab3-4dbb-a0f5-553eb1a20b9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Characters">
+      <UniqueIdentifier>{65fa6b45-0926-4edb-be61-0a60f4188c0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject\Camera.cpp">
