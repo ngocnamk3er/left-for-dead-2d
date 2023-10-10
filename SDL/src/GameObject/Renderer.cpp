@@ -25,7 +25,19 @@ bool Renderer::Init()
 		printf("Warning: Linear texture filtering not enabled!");
 	}
 	//Create window
-	gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIDHT, SDL_WINDOW_SHOWN);
+	gWindow = SDL_CreateWindow("Left 4 dead 2D", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIDHT, SDL_WINDOW_SHOWN);
+	SDL_Surface* icon = IMG_Load("Data/Textures/icon_game.png");
+	if (icon == NULL)
+	{
+		printf("Could not load icon image: %s\n", SDL_GetError());
+		//return;
+	}
+
+	// Set the icon for the window.
+	SDL_SetWindowIcon(gWindow, icon);
+
+	// Free the icon image.
+	SDL_FreeSurface(icon);
 	if (gWindow == NULL)
 	{
 		printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
