@@ -45,6 +45,7 @@ void GSPlay::Init()
 	//Camera::GetInstance()->SetTarget(obj);
 	//m_listAnimation.push_back(obj);
 
+	//Add Monster
 	for (int i = 0; i < 5; i++)
 	{
 		texture = ResourceManagers::GetInstance()->GetTexture("monster/clawed abomination/ClawedAbomination.png");
@@ -53,6 +54,13 @@ void GSPlay::Init()
 		obj_monster->Set2DPosition(100*i, 400);
 		m_listMonster.push_back(obj_monster);
 	}
+
+	//Add gun
+	texture = ResourceManagers::GetInstance()->GetTexture("Gun/1px/31.png");
+	m_gun = std::make_shared<Gun>(texture, SDL_FLIP_NONE);
+	m_gun->SetSize(46, 24);
+	m_gun->Set2DPosition(240, 400);
+
 
 
 	m_KeyPress.Left = 0;
@@ -179,6 +187,7 @@ void GSPlay::Update(float deltaTime)
 	}
 
 	m_player->Update(deltaTime, m_KeyPress);
+	m_gun->Update(deltaTime);
 	//Update position of camera
 	//Camera::GetInstance()->Update(deltaTime);
 	//obj->Update(deltaTime);
@@ -194,4 +203,5 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 	}
 
 	m_player->Draw(renderer);
+	m_gun->Draw(renderer);
 }

@@ -28,6 +28,9 @@
     <Filter Include="Source Files\GameObjects\Characters">
       <UniqueIdentifier>{65fa6b45-0926-4edb-be61-0a60f4188c0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObjects\Weapon">
+      <UniqueIdentifier>{12688645-154f-4727-bb70-2a20f2eb9c60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject\Camera.cpp">
@@ -86,6 +89,18 @@
     </ClCompile>
     <ClCompile Include="src\GameStates\GSHelp.cpp">
       <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Keyset.h">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Characters\Player.cpp">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Characters\Monster.cpp">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Gun.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="src\GameStates\GSHelp.h">
       <Filter>Source Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Characters\Player.h">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Characters\Monster.h">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Gun.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include "Sound.h"
 #include "GameObject/Characters/Player.h"
 #include "GameObject/Characters/Monster.h"
+#include "GameObject/Weapon/Gun.h"
 
 class Sprite2D;
 class SpriteAnimation;
@@ -38,6 +39,7 @@ private:
 	std::shared_ptr<SpriteAnimation> obj;
 	std::shared_ptr<Monster> obj_monster;
 	std::shared_ptr<Player> m_player;
+	std::shared_ptr<Gun> m_gun;
 	std::shared_ptr<MouseButton> button;
 	
 	float time = 0.0f;

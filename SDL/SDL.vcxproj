@@ -169,7 +169,10 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
     <ClCompile Include="src\GameObject\Camera.cpp" />
+    <ClCompile Include="src\GameObject\Characters\Monster.cpp" />
+    <ClCompile Include="src\GameObject\Characters\Player.cpp" />
     <ClCompile Include="src\GameObject\CMath.cpp" />
+    <ClCompile Include="src\GameObject\Keyset.h" />
     <ClCompile Include="src\GameObject\MouseButton.cpp" />
     <ClCompile Include="src\GameObject\Renderer.cpp" />
     <ClCompile Include="src\GameObject\Sound.cpp" />
@@ -178,6 +181,7 @@
     <ClCompile Include="src\GameObject\Text.cpp" />
     <ClCompile Include="src\GameObject\TextureManager.cpp" />
     <ClCompile Include="src\GameObject\Timer.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Gun.cpp" />
     <ClCompile Include="src\GameStates\GameStateBase.cpp" />
     <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\GSHelp.cpp" />
@@ -192,6 +196,8 @@
     <ClInclude Include="src\GameManager\Singleton.h" />
     <ClInclude Include="src\GameObject\BaseObject.h" />
     <ClInclude Include="src\GameObject\Camera.h" />
+    <ClInclude Include="src\GameObject\Characters\Monster.h" />
+    <ClInclude Include="src\GameObject\Characters\Player.h" />
     <ClInclude Include="src\GameObject\CMath.h" />
     <ClInclude Include="src\GameObject\Define.h" />
     <ClInclude Include="src\GameObject\KeyState.h" />
@@ -203,6 +209,7 @@
     <ClInclude Include="src\GameObject\Text.h" />
     <ClInclude Include="src\GameObject\TextureManager.h" />
     <ClInclude Include="src\GameObject\Timer.h" />
+    <ClInclude Include="src\GameObject\Weapon\Gun.h" />
     <ClInclude Include="src\GameStates\GameStateBase.h" />
     <ClInclude Include="src\GameStates\GameStateMachine.h" />
     <ClInclude Include="src\GameStates\GSHelp.h" />
