@@ -26,15 +26,24 @@ bool Renderer::Init()
 	}
 	//Create window
 	gWindow = SDL_CreateWindow("Left 4 dead 2D", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIDHT, SDL_WINDOW_SHOWN);
+	// set icon
 	SDL_Surface* icon = IMG_Load("Data/Textures/icon_game.png");
 	if (icon == NULL)
 	{
 		printf("Could not load icon image: %s\n", SDL_GetError());
 		//return;
 	}
-
 	// Set the icon for the window.
 	SDL_SetWindowIcon(gWindow, icon);
+
+	//set icon for mouse
+	SDL_Surface* cursorIcon = IMG_Load("Data/Textures/circular-target.png");
+	SDL_Cursor* customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
+	if (customCursor == NULL)
+	{
+		printf("Could not create custom cursor: %s\n", SDL_GetError());
+	}
+	SDL_SetCursor(customCursor);
 
 	// Free the icon image.
 	SDL_FreeSurface(icon);

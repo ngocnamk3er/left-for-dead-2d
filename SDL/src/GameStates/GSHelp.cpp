@@ -79,6 +79,10 @@ void GSHelp::HandleTouchEvents(SDL_Event& e)
 	}
 }
 
+void GSHelp::HandleMouseEvents(SDL_Event& e)
+{
+}
+
 void GSHelp::HandleMouseMoveEvents(int x, int y)
 {
 }

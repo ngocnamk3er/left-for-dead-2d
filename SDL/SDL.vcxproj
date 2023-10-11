@@ -209,6 +209,7 @@
     <ClInclude Include="src\GameObject\Text.h" />
     <ClInclude Include="src\GameObject\TextureManager.h" />
     <ClInclude Include="src\GameObject\Timer.h" />
+    <ClInclude Include="src\GameObject\Weapon\AimMouse.h" />
     <ClInclude Include="src\GameObject\Weapon\Gun.h" />
     <ClInclude Include="src\GameStates\GameStateBase.h" />
     <ClInclude Include="src\GameStates\GameStateMachine.h" />

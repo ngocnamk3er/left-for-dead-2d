@@ -25,6 +25,7 @@ public:
 	void	HandleEvents() override;
 	void	HandleKeyEvents(SDL_Event& e) override;
 	void	HandleTouchEvents(SDL_Event& e) override;
+	void	HandleMouseEvents(SDL_Event& e) override;
 	void	HandleMouseMoveEvents(int x, int y) override;
 	void	Update(float deltaTime) override;
 	void	Draw(SDL_Renderer* renderer) override;
@@ -41,7 +42,7 @@ private:
 	std::shared_ptr<Player> m_player;
 	std::shared_ptr<Gun> m_gun;
 	std::shared_ptr<MouseButton> button;
-	
+	AimMouse aimMouse;
 	float time = 0.0f;
 	float m_Velocity = 10.0f;
 };

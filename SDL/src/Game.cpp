@@ -48,6 +48,12 @@ void Game::Run()
 						GameStateMachine::GetInstance()->CurrentState()->HandleTouchEvents(e);
 					}
 
+					//Handle Mouse Motion Event
+					if (GameStateMachine::GetInstance()->HasState())
+					{
+						GameStateMachine::GetInstance()->CurrentState()->HandleMouseEvents(e);
+					}
+
 				}
 				// Handle Key States (instead of Key events)
 				/*if (GameStateMachine::GetInstance()->HasState())

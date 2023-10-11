@@ -56,12 +56,12 @@ void GSPlay::Init()
 	}
 
 	//Add gun
-	texture = ResourceManagers::GetInstance()->GetTexture("Gun/1px/31.png");
+	texture = ResourceManagers::GetInstance()->GetTexture("Gun/1px/7.png");
 	m_gun = std::make_shared<Gun>(texture, SDL_FLIP_NONE);
-	m_gun->SetSize(46, 24);
+	m_gun->SetSize(64 , 24);
 	m_gun->Set2DPosition(240, 400);
-
-
+	//Set gun for character
+	m_player->SetGun(m_gun);
 
 	m_KeyPress.Left = 0;
 	m_KeyPress.Down = 0;
@@ -163,6 +163,14 @@ void GSPlay::HandleTouchEvents(SDL_Event& e)
 	}
 }
 
+void GSPlay::HandleMouseEvents(SDL_Event& e)
+{
+	if (e.type == SDL_MOUSEMOTION) {
+		aimMouse.x = e.motion.x;
+		aimMouse.y = e.motion.y;
+	}
+}
+
 void GSPlay::HandleMouseMoveEvents(int x, int y)
 {
 }
@@ -186,11 +194,12 @@ void GSPlay::Update(float deltaTime)
 		it->Update(deltaTime);
 	}
 
-	m_player->Update(deltaTime, m_KeyPress);
-	m_gun->Update(deltaTime);
-	//Update position of camera
-	//Camera::GetInstance()->Update(deltaTime);
-	//obj->Update(deltaTime);
+	m_player->Update(deltaTime, m_KeyPress, aimMouse);
+	
+	for (auto it : m_listButton)
+	{
+		it->Update(deltaTime);
+	}
 }
 
 void GSPlay::Draw(SDL_Renderer* renderer)
@@ -203,5 +212,9 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 	}
 
 	m_player->Draw(renderer);
-	m_gun->Draw(renderer);
+	//m_gun->Draw(renderer);
+	for (auto it : m_listButton)
+	{
+		it->Draw(renderer);
+	}
 }
