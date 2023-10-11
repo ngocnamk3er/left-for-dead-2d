@@ -27,6 +27,8 @@ public:
 	void		Init() override;
 	void		Draw(SDL_Renderer* renderer) override;
 	void		Update(float deltatime) override;
+	void		UpdatePos(float deltatime);
+	void		UpdateAnimation(float deltatime);
 
 	void		Set2DPosition(float x, float y);
 	void		SetRotation(double angle);

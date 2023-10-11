@@ -2,16 +2,11 @@
 #include "GameStateBase.h"
 #include "GameObject/MouseButton.h"
 #include "Sound.h"
+#include "GameObject/Characters/Player.h"
+#include "GameObject/Characters/Monster.h"
+
 class Sprite2D;
 class SpriteAnimation;
-
-struct KeySet {
-	bool Left;
-	bool Down;
-	bool Right;
-	bool Up;
-};
-
 
 class GSPlay :
 	public GameStateBase
@@ -39,7 +34,10 @@ private:
 	//std::shared_ptr<Text>		m_score;
 	std::list<std::shared_ptr<MouseButton>>	m_listButton;
 	std::list<std::shared_ptr<SpriteAnimation>>	m_listAnimation;
+	std::list<std::shared_ptr<Monster>>	m_listMonster;
 	std::shared_ptr<SpriteAnimation> obj;
+	std::shared_ptr<Monster> obj_monster;
+	std::shared_ptr<Player> m_player;
 	std::shared_ptr<MouseButton> button;
 	
 	float time = 0.0f;

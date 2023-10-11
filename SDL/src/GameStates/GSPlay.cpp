@@ -37,13 +37,22 @@ void GSPlay::Init()
 		});
 	m_listButton.push_back(button);
 
-	// Animation 
+	// Add Player
 	texture = ResourceManagers::GetInstance()->GetTexture("MainCharacter/3 Dude_Monster/Dude_Monster_Run_6.png");
-	obj = std::make_shared<SpriteAnimation>(texture, 1, 6, 1, 0.15f);
-	obj->SetSize(64, 64);
-	obj->Set2DPosition(240, 400);
+	m_player = std::make_shared<Player>(texture, 1, 6, 1, 0.15f);
+	m_player->SetSize(64, 64);
+	m_player->Set2DPosition(240, 400);
 	//Camera::GetInstance()->SetTarget(obj);
-	m_listAnimation.push_back(obj);
+	//m_listAnimation.push_back(obj);
+
+	for (int i = 0; i < 5; i++)
+	{
+		texture = ResourceManagers::GetInstance()->GetTexture("monster/clawed abomination/ClawedAbomination.png");
+		obj_monster = std::make_shared<Monster>(texture, 1, 4, 1, 0.15f);
+		obj_monster->SetSize(64, 64);
+		obj_monster->Set2DPosition(100*i, 400);
+		m_listMonster.push_back(obj_monster);
+	}
 
 
 	m_KeyPress.Left = 0;
@@ -163,24 +172,13 @@ void GSPlay::Update(float deltaTime)
 	{
 		it->Update(deltaTime);
 	}
-	for (auto it : m_listAnimation)
+	
+	for (auto it : m_listMonster)
 	{
-		if (m_KeyPress.Left) {
-			it->MoveLeft(deltaTime);
-		}
-		if (m_KeyPress.Down) {
-			it->MoveDown(deltaTime);
-		}
-		if (m_KeyPress.Right) {
-			it->MoveRight(deltaTime);
-		}
-		if (m_KeyPress.Up) {
-			it->MoveTop(deltaTime);
-		}
-
 		it->Update(deltaTime);
 	}
 
+	m_player->Update(deltaTime, m_KeyPress);
 	//Update position of camera
 	//Camera::GetInstance()->Update(deltaTime);
 	//obj->Update(deltaTime);
@@ -189,14 +187,11 @@ void GSPlay::Update(float deltaTime)
 void GSPlay::Draw(SDL_Renderer* renderer)
 {
 	m_background->Draw(renderer);
-	//m_score->Draw();
-	for (auto it : m_listButton)
+	
+	for (auto it : m_listMonster)
 	{
 		it->Draw(renderer);
 	}
-	//	obj->Draw(renderer);
-	for (auto it : m_listAnimation)
-	{
-		it->Draw(renderer);
-	}
+
+	m_player->Draw(renderer);
 }
