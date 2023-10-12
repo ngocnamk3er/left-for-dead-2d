@@ -39,9 +39,10 @@ void	Player::UpdatePos(float deltatime, KeySet keyPress) {
 		MoveTop(deltatime);
 	}
 }
-void Player::SetGun(std::shared_ptr<Gun> gun)
+void Player::SetGun(std::shared_ptr<TextureManager> texture)
 {
-	m_gun = gun;
+	m_gun = std::make_shared<Gun>(texture, SDL_FLIP_NONE);
+	m_gun->SetSize(64, 24);
 }
 void Player::Draw(SDL_Renderer* renderer)
 {

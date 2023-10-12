@@ -182,6 +182,7 @@
     <ClCompile Include="src\GameObject\TextureManager.cpp" />
     <ClCompile Include="src\GameObject\Timer.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Gun.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Projectile.cpp" />
     <ClCompile Include="src\GameStates\GameStateBase.cpp" />
     <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\GSHelp.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="src\GameObject\Timer.h" />
     <ClInclude Include="src\GameObject\Weapon\AimMouse.h" />
     <ClInclude Include="src\GameObject\Weapon\Gun.h" />
+    <ClInclude Include="src\GameObject\Weapon\Projectile.h" />
     <ClInclude Include="src\GameStates\GameStateBase.h" />
     <ClInclude Include="src\GameStates\GameStateMachine.h" />
     <ClInclude Include="src\GameStates\GSHelp.h" />

@@ -102,6 +102,9 @@
     <ClCompile Include="src\GameObject\Weapon\Gun.cpp">
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Projectile.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\BaseObject.h">
@@ -180,6 +183,9 @@
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObject\Weapon\AimMouse.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Projectile.h">
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
   </ItemGroup>

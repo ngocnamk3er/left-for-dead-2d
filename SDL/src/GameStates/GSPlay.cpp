@@ -57,11 +57,8 @@ void GSPlay::Init()
 
 	//Add gun
 	texture = ResourceManagers::GetInstance()->GetTexture("Gun/1px/7.png");
-	m_gun = std::make_shared<Gun>(texture, SDL_FLIP_NONE);
-	m_gun->SetSize(64 , 24);
-	m_gun->Set2DPosition(240, 400);
 	//Set gun for character
-	m_player->SetGun(m_gun);
+	m_player->SetGun(texture);
 
 	m_KeyPress.Left = 0;
 	m_KeyPress.Down = 0;
