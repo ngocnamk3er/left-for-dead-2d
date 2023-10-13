@@ -11,8 +11,9 @@ public:
 	void		Init();
 	void	Update(float deltatime, KeySet keyPress, AimMouse aimMouse);
 	void	UpdatePos(float deltatime, KeySet keyPress);
-	void	SetGun(std::shared_ptr<TextureManager> texture);
+	void	SetGun(std::shared_ptr<Gun> gun);
 	void	Draw(SDL_Renderer* renderer) override;
+	void PullTrigger();
 private:
 	void UpdateGunPos(AimMouse aimMouse);
 	void DrawGun(SDL_Renderer* renderer);

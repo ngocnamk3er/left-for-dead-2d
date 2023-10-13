@@ -8,5 +8,6 @@ public:
 	//Initializes internal variable
 	Gun();
 	Gun(std::shared_ptr<TextureManager> texture, SDL_RendererFlip flip);
+	virtual void Shot();
 };
 

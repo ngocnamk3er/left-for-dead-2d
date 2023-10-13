@@ -1,5 +1,7 @@
 #include "Player.h"
 #include <cmath>
+#include <iostream>
+#define ONE_RAD 180
 
 using namespace std;
 
@@ -39,9 +41,9 @@ void	Player::UpdatePos(float deltatime, KeySet keyPress) {
 		MoveTop(deltatime);
 	}
 }
-void Player::SetGun(std::shared_ptr<TextureManager> texture)
+void Player::SetGun(std::shared_ptr<Gun> gun)
 {
-	m_gun = std::make_shared<Gun>(texture, SDL_FLIP_NONE);
+	m_gun = gun;
 	m_gun->SetSize(64, 24);
 }
 void Player::Draw(SDL_Renderer* renderer)
@@ -57,14 +59,14 @@ void Player::UpdateGunPos(AimMouse aimMouse)
 
 	double angleRadians = atan((float)(aimMouse.y - (m_position.y + m_iHeight / 2) )/ (float)(aimMouse.x - (m_position.x + m_iWidth / 2)));
 
-	double angleDegrees = angleRadians * 180 / M_PI;
+	double angleDegrees = angleRadians * ONE_RAD / M_PI;
 
-	printf("%f\n", angleDegrees);
 
 	if ((float)(aimMouse.x - (m_position.x + m_iWidth / 2)) < 0) {
-		angleDegrees = angleDegrees + 180;
+		angleDegrees = angleDegrees + ONE_RAD;
 	}
 
+	//printf("%f\n", angleDegrees);
 	//printf("%d\n", (aimMouse.y - (m_position.y + m_iHeight / 2)));
 	//printf("%d\n", (aimMouse.x - (m_position.x + m_iWidth / 2)));
 	m_gun->SetRotation(angleDegrees);
@@ -72,5 +74,9 @@ void Player::UpdateGunPos(AimMouse aimMouse)
 void Player::DrawGun(SDL_Renderer* renderer)
 {
 	m_gun->Draw(renderer);
+}
+void Player::PullTrigger()
+{
+	m_gun->Shot();
 }
 ;

@@ -46,7 +46,11 @@ void GSIntro::HandleTouchEvents(SDL_Event& e)
 {
 }
 
-void GSIntro::HandleMouseEvents(SDL_Event& e)
+void GSIntro::HandleMouseMotionEvents(SDL_Event& e)
+{
+}
+
+void GSIntro::HandleMouseClickEvents(SDL_Event& e)
 {
 }
 

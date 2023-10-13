@@ -9,3 +9,13 @@ Gun::Gun(std::shared_ptr<TextureManager> texture, SDL_RendererFlip flip)
 	: Sprite2D(texture, flip)
 {
 }
+
+void Gun::Shot()
+{
+	printf("parent gun shot\n");
+}
+
+//void Gun::Shot()
+//{
+//	printf("I am shooting\n");
+//}

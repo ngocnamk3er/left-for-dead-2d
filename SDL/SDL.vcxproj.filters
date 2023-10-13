@@ -105,6 +105,12 @@
     <ClCompile Include="src\GameObject\Weapon\Projectile.cpp">
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Gun2.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Gun1.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\BaseObject.h">
@@ -186,6 +192,12 @@
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObject\Weapon\Projectile.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Gun1.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Gun2.h">
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
   </ItemGroup>

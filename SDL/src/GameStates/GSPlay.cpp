@@ -51,14 +51,15 @@ void GSPlay::Init()
 		texture = ResourceManagers::GetInstance()->GetTexture("Zombies/BucketheadZombie/spritesheet_bucket.png");
 		obj_monster = std::make_shared<Monster>(texture, 1, 15, 1, 0.15f);
 		obj_monster->SetSize(83, 72);
-		obj_monster->Set2DPosition(100*i, 400);
+		obj_monster->Set2DPosition(100 * i, 400);
 		m_listMonster.push_back(obj_monster);
 	}
 
 	//Add gun
-	texture = ResourceManagers::GetInstance()->GetTexture("Gun/Gun1.png");
+	m_gun = std::make_shared<Gun2>();
+	//m_gun->SetFlip(SDL_FLIP_NONE);
 	//Set gun for character
-	m_player->SetGun(texture);
+	m_player->SetGun(m_gun);
 
 	m_KeyPress.Left = 0;
 	m_KeyPress.Down = 0;
@@ -160,11 +161,22 @@ void GSPlay::HandleTouchEvents(SDL_Event& e)
 	}
 }
 
-void GSPlay::HandleMouseEvents(SDL_Event& e)
+void GSPlay::HandleMouseMotionEvents(SDL_Event& e)
 {
 	if (e.type == SDL_MOUSEMOTION) {
 		aimMouse.x = e.motion.x;
 		aimMouse.y = e.motion.y;
+	}
+}
+
+void GSPlay::HandleMouseClickEvents(SDL_Event& e)
+{
+	if (e.type == SDL_MOUSEBUTTONDOWN) {
+		printf("down\n");
+		m_player->PullTrigger();
+	}
+	else if (e.type == SDL_MOUSEBUTTONUP) {
+		printf("up\n");
 	}
 }
 
@@ -185,14 +197,14 @@ void GSPlay::Update(float deltaTime)
 	{
 		it->Update(deltaTime);
 	}
-	
+
 	for (auto it : m_listMonster)
 	{
 		it->Update(deltaTime);
 	}
 
 	m_player->Update(deltaTime, m_KeyPress, aimMouse);
-	
+
 	for (auto it : m_listButton)
 	{
 		it->Update(deltaTime);
@@ -202,14 +214,13 @@ void GSPlay::Update(float deltaTime)
 void GSPlay::Draw(SDL_Renderer* renderer)
 {
 	m_background->Draw(renderer);
-	
+
 	for (auto it : m_listMonster)
 	{
 		it->Draw(renderer);
 	}
 
 	m_player->Draw(renderer);
-	//m_gun->Draw(renderer);
 	for (auto it : m_listButton)
 	{
 		it->Draw(renderer);

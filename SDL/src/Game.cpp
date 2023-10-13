@@ -51,7 +51,12 @@ void Game::Run()
 					//Handle Mouse Motion Event
 					if (GameStateMachine::GetInstance()->HasState())
 					{
-						GameStateMachine::GetInstance()->CurrentState()->HandleMouseEvents(e);
+						GameStateMachine::GetInstance()->CurrentState()->HandleMouseMotionEvents(e);
+					}
+					//Handle mouse click Event
+					if (GameStateMachine::GetInstance()->HasState())
+					{
+						GameStateMachine::GetInstance()->CurrentState()->HandleMouseClickEvents(e);
 					}
 
 				}
