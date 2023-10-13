@@ -28,10 +28,10 @@ void GSPlay::Init()
 	m_background->Set2DPosition(0, 0);
 
 	// button close
-	texture = ResourceManagers::GetInstance()->GetTexture("btn_close.tga");
-	button = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
-	button->SetSize(50, 50);
-	button->Set2DPosition(SCREEN_WIDTH - 50, 10);
+	texture = ResourceManagers::GetInstance()->GetTexture("GUI/closeButton.png");
+	button = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, " ");
+	button->SetSize(64, 64);
+	button->Set2DPosition(SCREEN_WIDTH - button->GetWidth() - 10, 10);
 	button->SetOnClick([this]() {
 		GameStateMachine::GetInstance()->PopState();
 		});
@@ -56,7 +56,7 @@ void GSPlay::Init()
 	}
 
 	//Add gun
-	m_gun = std::make_shared<Gun2>();
+	m_gun = std::make_shared<Gun1>();
 	//m_gun->SetFlip(SDL_FLIP_NONE);
 	//Set gun for character
 	m_player->SetGun(m_gun);
@@ -66,6 +66,10 @@ void GSPlay::Init()
 	m_KeyPress.Right = 0;
 	m_KeyPress.Up = 0;
 
+	cursorIcon = IMG_Load("Data/Textures/GUI/target.svg");
+	customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
+	SDL_FreeSurface(cursorIcon);
+	SDL_SetCursor(customCursor);
 }
 
 void GSPlay::Exit()

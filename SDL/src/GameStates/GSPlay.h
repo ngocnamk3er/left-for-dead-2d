@@ -48,4 +48,6 @@ private:
 	AimMouse aimMouse;
 	float time = 0.0f;
 	float m_Velocity = 10.0f;
+	SDL_Surface* cursorIcon;
+	SDL_Cursor* customCursor;
 };

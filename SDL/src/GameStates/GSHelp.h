@@ -30,6 +30,8 @@ private:
 	std::shared_ptr<Sprite2D>				m_background;
 	std::list<std::shared_ptr<MouseButton>>	m_listButton;
 	std::shared_ptr<Text>					m_textHelp;
+	std::shared_ptr<Text>					m_textHelp1;
+	std::shared_ptr<Text>					m_textHelp2;
 	SDL_Color m_textColor;
 	TTF_Font* m_Font;
 };

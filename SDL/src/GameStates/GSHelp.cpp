@@ -15,7 +15,7 @@ GSHelp::~GSHelp()
 void GSHelp::Init()
 {
 	//auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D.nfg");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_main_menu.tga");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("GUI/menuBG.png");
 
 	// background
 	//auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
@@ -25,21 +25,33 @@ void GSHelp::Init()
 
 
 	// exit button
-	texture = ResourceManagers::GetInstance()->GetTexture("btn_close.tga");
-	std::shared_ptr<MouseButton> btnClose = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
+	texture = ResourceManagers::GetInstance()->GetTexture("GUI/closeButton.png");
+	std::shared_ptr<MouseButton> btnClose = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, " ");
 	//btnClose = std::make_shared<MouseButton>(texture);
-	btnClose->SetSize(50, 50);
-	btnClose->Set2DPosition(SCREEN_WIDTH - btnClose->GetWidth(), 10);
+	btnClose->SetSize(64, 64);
+	btnClose->Set2DPosition(SCREEN_WIDTH - btnClose->GetWidth() - 10, 10);
 	btnClose->SetOnClick([this]() {
 		GameStateMachine::GetInstance()->PopState();
 		});
 	m_listButton.push_back(btnClose);
 
-	m_textColor = { 255, 255, 0 };
-	m_textHelp = std::make_shared<Text>("Data/lazy.ttf", m_textColor);
-	m_textHelp->SetSize(300, 50);
-	m_textHelp->Set2DPosition((SCREEN_WIDTH - m_textHelp->GetWidth()) / 2, SCREEN_HEIDHT / 2 - 300);
+	m_textColor = { 255, 255, 255 };
+	m_textHelp = std::make_shared<Text>("Data/Textures/GUI/m6x11.ttf", m_textColor);
+	m_textHelp->SetSize(600, 50);
+	m_textHelp->Set2DPosition((SCREEN_WIDTH - m_textHelp->GetWidth()) / 2, SCREEN_HEIDHT / 2 - 150);
 	m_textHelp->LoadFromRenderText("This is your guide");
+
+	m_textColor = { 255, 255, 255 };
+	m_textHelp1 = std::make_shared<Text>("Data/Textures/GUI/m6x11.ttf", m_textColor);
+	m_textHelp1->SetSize(600, 50);
+	m_textHelp1->Set2DPosition((SCREEN_WIDTH - m_textHelp->GetWidth()) / 2, SCREEN_HEIDHT / 2 - 50);
+	m_textHelp1->LoadFromRenderText("USE UP DOWN LEFT RIGHT FOR MOVING YOUR HERO");
+
+	m_textColor = { 255, 255, 255 };
+	m_textHelp2 = std::make_shared<Text>("Data/Textures/GUI/m6x11.ttf", m_textColor);
+	m_textHelp2->SetSize(600, 50);
+	m_textHelp2->Set2DPosition((SCREEN_WIDTH - m_textHelp->GetWidth()) / 2, SCREEN_HEIDHT / 2 + 50);
+	m_textHelp2->LoadFromRenderText("MOVE MOUSE FOR AIMING, CLICK LEFT MOUSE FOR SHOOT");
 	
 }
 
@@ -108,4 +120,6 @@ void GSHelp::Draw(SDL_Renderer* renderer)
 		it->Draw(renderer);
 	}
 	m_textHelp->Draw(renderer);
+	m_textHelp1->Draw(renderer);
+	m_textHelp2->Draw(renderer);
 }

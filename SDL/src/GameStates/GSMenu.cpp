@@ -15,7 +15,7 @@ GSMenu::~GSMenu()
 void GSMenu::Init()
 {
 	//auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D.nfg");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_main_menu.tga");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("GUI/menuBG.png");
 
 	// background
 	//auto shader = ResourceManagers::GetInstance()->GetShader("TextureShader");
@@ -23,43 +23,44 @@ void GSMenu::Init()
 	m_background->SetSize(SCREEN_WIDTH, SCREEN_HEIDHT);
 	m_background->Set2DPosition(0, 0);
 
-	// play button
-	texture = ResourceManagers::GetInstance()->GetTexture("btn_play.tga");
-	std::shared_ptr<MouseButton> btnPlay = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
-	
-	btnPlay->SetSize(150, 150);
-	btnPlay->Set2DPosition((SCREEN_WIDTH - btnPlay->GetWidth())/2, (SCREEN_HEIDHT - btnPlay->GetHeight()) / 2);
-	btnPlay->SetOnClick([]() {
-		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
-		});
-	m_listButton.push_back(btnPlay);
-
 	// exit button
-	texture = ResourceManagers::GetInstance()->GetTexture("btn_close.tga");
-	std::shared_ptr<MouseButton> btnClose = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
+	texture = ResourceManagers::GetInstance()->GetTexture("GUI/closeButton.png");
+	std::shared_ptr<MouseButton> btnClose = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, " ");
 	//btnClose = std::make_shared<MouseButton>(texture);
-	btnClose->SetSize(50, 50);
-	btnClose->Set2DPosition(SCREEN_WIDTH - btnClose->GetWidth(), 10);
+	btnClose->SetSize(64, 64);
+	btnClose->Set2DPosition(SCREEN_WIDTH - btnClose->GetWidth() - 10, 10);
 	btnClose->SetOnClick([]() {
 		exit(0);
 		});
 	m_listButton.push_back(btnClose);
 
+
+	// play button
+	texture = ResourceManagers::GetInstance()->GetTexture("GUI/menuButton.png");
+	std::shared_ptr<MouseButton> btnPlay = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, "Play");
+
+	btnPlay->SetSize(200, 50);
+	btnPlay->Set2DPosition((SCREEN_WIDTH - btnPlay->GetWidth()) / 2, (SCREEN_HEIDHT - btnPlay->GetHeight()) / 2);
+	btnPlay->SetOnClick([]() {
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
+		});
+	m_listButton.push_back(btnPlay);
+
 	//Setting game
-	texture = ResourceManagers::GetInstance()->GetTexture("btn_settings.tga");
-	std::shared_ptr<MouseButton> btnOption = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
-	btnOption->SetSize(100, 100);
-	btnOption->Set2DPosition((SCREEN_WIDTH - btnOption->GetWidth()) / 2, SCREEN_HEIDHT / 2 + 170);
+	texture = ResourceManagers::GetInstance()->GetTexture("GUI/menuButton.png");
+	std::shared_ptr<MouseButton> btnOption = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, "Settings");
+	btnOption->SetSize(200, 50);
+	btnOption->Set2DPosition((SCREEN_WIDTH - btnPlay->GetWidth()) / 2, (SCREEN_HEIDHT - btnPlay->GetHeight()) / 2 + 100);
 	btnOption->SetOnClick([]() {
 		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_OPTION);
 		});
 	m_listButton.push_back(btnOption);
 
 	//CREDIT game
-	texture = ResourceManagers::GetInstance()->GetTexture("btn_help.tga");
-	btnCredit = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE);
-	btnCredit->Set2DPosition((SCREEN_WIDTH - btnCredit->GetWidth()) / 2, SCREEN_HEIDHT / 2 + 280);
-	btnCredit->SetSize(100, 100);
+	texture = ResourceManagers::GetInstance()->GetTexture("GUI/menuButton.png");
+	btnCredit = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, "Help");
+	btnCredit->Set2DPosition((SCREEN_WIDTH - btnPlay->GetWidth()) / 2, (SCREEN_HEIDHT - btnPlay->GetHeight()) / 2 + 200);
+	btnCredit->SetSize(200, 50);
 	btnCredit->SetOnClick([]() {
 		printf("check");
 		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_CREDIT);
@@ -68,15 +69,25 @@ void GSMenu::Init()
 
 	// game title
 	///Set Font
-	m_textColor = { 255, 255, 0 };
-	m_textGameName = std::make_shared<Text>("Data/lazy.ttf", m_textColor);
+	m_textColor = { 255, 255, 255 };
+	m_textGameName = std::make_shared<Text>("Data/Textures/GUI/m6x11.ttf", m_textColor);
 	m_textGameName->SetSize(300, 50);
-	m_textGameName->Set2DPosition((SCREEN_WIDTH - m_textGameName->GetWidth())/2, SCREEN_HEIDHT / 2 - 300);
-	m_textGameName->LoadFromRenderText("Your Game");
+	m_textGameName->Set2DPosition((SCREEN_WIDTH - m_textGameName->GetWidth()) / 2, SCREEN_HEIDHT / 2 - 150);
+	m_textGameName->LoadFromRenderText("LEFT 4 DEAD 2D");
 	m_Sound = std::make_shared<Sound>();
 	m_Sound->LoadSound("Data/Sounds/Alarm01.wav");
 	m_Sound->PlaySound();
-	
+
+	//cursorIcon = IMG_Load("Data/Textures/GUI/cursorImage.png");
+	//customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
+	//SDL_FreeSurface(cursorIcon);
+	//SDL_SetCursor(customCursor);
+
+	cursorIcon = IMG_Load("Data/Textures/GUI/cursor_select.png");
+	customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
+	SDL_FreeSurface(cursorIcon);
+	SDL_SetCursor(customCursor);
+
 }
 
 void GSMenu::Exit()
@@ -89,12 +100,13 @@ void GSMenu::Pause()
 {
 	m_Sound->StopSound();
 	// button close
-	
+
 }
 
 void GSMenu::Resume()
 {
 	m_Sound->PlaySound();
+	SDL_SetCursor(customCursor);
 }
 
 
@@ -110,7 +122,7 @@ void GSMenu::HandleTouchEvents(SDL_Event& e)
 {
 	for (auto button : m_listButton)
 	{
-		if (button ->HandleTouchEvent(&e))
+		if (button->HandleTouchEvent(&e))
 		{
 			break;
 		}
@@ -145,6 +157,6 @@ void GSMenu::Draw(SDL_Renderer* renderer)
 	{
 		it->Draw(renderer);
 	}
-	
+
 	m_textGameName->Draw(renderer);
 }

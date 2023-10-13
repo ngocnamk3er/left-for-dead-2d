@@ -34,5 +34,7 @@ private:
 	std::shared_ptr<Sound>					m_Sound;
 	std::shared_ptr<MouseButton> btnCredit;
 	int score = 0;
+	SDL_Surface* cursorIcon;
+	SDL_Cursor* customCursor;
 	
 };
