@@ -46,17 +46,17 @@ void GSPlay::Init()
 	//m_listAnimation.push_back(obj);
 
 	//Add Monster
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 1; i++)
 	{
-		texture = ResourceManagers::GetInstance()->GetTexture("monster/clawed abomination/ClawedAbomination.png");
-		obj_monster = std::make_shared<Monster>(texture, 1, 4, 1, 0.15f);
-		obj_monster->SetSize(64, 64);
+		texture = ResourceManagers::GetInstance()->GetTexture("Zombies/BucketheadZombie/spritesheet_bucket.png");
+		obj_monster = std::make_shared<Monster>(texture, 1, 15, 1, 0.15f);
+		obj_monster->SetSize(83, 72);
 		obj_monster->Set2DPosition(100*i, 400);
 		m_listMonster.push_back(obj_monster);
 	}
 
 	//Add gun
-	texture = ResourceManagers::GetInstance()->GetTexture("Gun/1px/7.png");
+	texture = ResourceManagers::GetInstance()->GetTexture("Gun/Gun1.png");
 	//Set gun for character
 	m_player->SetGun(texture);
 
