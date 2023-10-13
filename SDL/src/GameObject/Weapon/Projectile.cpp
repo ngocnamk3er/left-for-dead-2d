@@ -23,6 +23,12 @@ void ProjectTile::Init()
 
 void ProjectTile::Update(float deltatime)
 {
+	UpdatePos(deltatime);
+	UpdateAnimation(deltatime);
+}
+
+void ProjectTile::UpdatePos(float deltatime)
+{
 	m_position.x = m_position.x + SPEEP_PROJECTILE * cos(m_angle);
 	m_position.y = m_position.y + SPEEP_PROJECTILE * sin(m_angle);
 }
