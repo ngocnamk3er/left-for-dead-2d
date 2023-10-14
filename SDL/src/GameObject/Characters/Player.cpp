@@ -24,9 +24,16 @@ void Player::Init()
 
 void	Player::Update(float deltatime, KeySet keyPress, AimMouse aimMouse) {
 	UpdatePos(deltatime, keyPress);
-	UpdateGunPos(aimMouse);
+	SetGunAngle(aimMouse);
 	UpdateAnimation(deltatime);
+	m_gun->UpdatePjectile(deltatime);
 };
+
+void Player::Draw(SDL_Renderer* renderer)
+{
+	SpriteAnimation::Draw(renderer);
+	DrawGun(renderer);
+}
 void	Player::UpdatePos(float deltatime, KeySet keyPress) {
 	if (keyPress.Left) {
 		MoveLeft(deltatime);
@@ -46,13 +53,8 @@ void Player::SetGun(std::shared_ptr<Gun> gun)
 	m_gun = gun;
 	m_gun->SetSize(64, 24);
 }
-void Player::Draw(SDL_Renderer* renderer)
-{
-	SpriteAnimation::Draw(renderer);
-	DrawGun(renderer);
-}
 //private
-void Player::UpdateGunPos(AimMouse aimMouse)
+void Player::SetGunAngle(AimMouse aimMouse)
 {
 	m_gun->Set2DPosition(m_position.x + m_iWidth / 3, m_position.y + m_iHeight / 2);
 
@@ -63,12 +65,18 @@ void Player::UpdateGunPos(AimMouse aimMouse)
 
 
 	if ((float)(aimMouse.x - (m_position.x + m_iWidth / 2)) < 0) {
-		angleDegrees = angleDegrees + ONE_RAD;
+		if (aimMouse.y - (m_position.y + m_iHeight / 2) < 0) {
+			angleDegrees = angleDegrees - ONE_RAD;
+		}
+		else {
+			angleDegrees = angleDegrees + ONE_RAD;
+		}
 	}
 
 	//printf("%f\n", angleDegrees);
 	//printf("%d\n", (aimMouse.y - (m_position.y + m_iHeight / 2)));
 	//printf("%d\n", (aimMouse.x - (m_position.x + m_iWidth / 2)));
+	//printf("%f\n", angleDegrees);
 	m_gun->SetRotation(angleDegrees);
 }
 void Player::DrawGun(SDL_Renderer* renderer)

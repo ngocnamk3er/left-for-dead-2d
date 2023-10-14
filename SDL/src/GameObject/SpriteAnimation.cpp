@@ -1,5 +1,7 @@
 #include "SpriteAnimation.h"
 #include "TextureManager.h"
+#include <iostream>
+
 SpriteAnimation::SpriteAnimation(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime) : BaseObject(texture)
 {
 	m_pTexture = texture;
@@ -13,6 +15,16 @@ SpriteAnimation::SpriteAnimation(std::shared_ptr<TextureManager> texture, int sp
 	m_currentTicks = 0;
 	m_lastUpdate = SDL_GetTicks();
 	Init();
+}
+SpriteAnimation::SpriteAnimation(std::shared_ptr<TextureManager> texture) : BaseObject(texture)
+{
+	m_currentFrame = 0;
+	m_currentTicks = 0;
+	m_lastUpdate = SDL_GetTicks();
+	Init();
+}
+SpriteAnimation::SpriteAnimation()
+{
 }
 SpriteAnimation::~SpriteAnimation()
 {

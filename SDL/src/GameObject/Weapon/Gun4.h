@@ -1,8 +1,8 @@
 #pragma once
 #include "Gun.h"
-class Gun1 : public Gun {
+class Gun4 : public Gun {
 public:
-	Gun1();
+	Gun4();
 	void Shot() override;
 	void UpdatePjectile(float deltatime) override;
 	void Draw(SDL_Renderer* renderer) override;

@@ -184,7 +184,13 @@
     <ClCompile Include="src\GameObject\Weapon\Gun.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Gun1.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Gun2.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Gun3.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Gun4.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Projectile.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Projectile1.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Projectile2.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Projectile3.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Projectile4.cpp" />
     <ClCompile Include="src\GameStates\GameStateBase.cpp" />
     <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\GSHelp.cpp" />
@@ -216,7 +222,13 @@
     <ClInclude Include="src\GameObject\Weapon\Gun.h" />
     <ClInclude Include="src\GameObject\Weapon\Gun1.h" />
     <ClInclude Include="src\GameObject\Weapon\Gun2.h" />
+    <ClInclude Include="src\GameObject\Weapon\Gun3.h" />
+    <ClInclude Include="src\GameObject\Weapon\Gun4.h" />
     <ClInclude Include="src\GameObject\Weapon\Projectile.h" />
+    <ClInclude Include="src\GameObject\Weapon\Projectile1.h" />
+    <ClInclude Include="src\GameObject\Weapon\Projectile2.h" />
+    <ClInclude Include="src\GameObject\Weapon\Projectile3.h" />
+    <ClInclude Include="src\GameObject\Weapon\Projectile4.h" />
     <ClInclude Include="src\GameStates\GameStateBase.h" />
     <ClInclude Include="src\GameStates\GameStateMachine.h" />
     <ClInclude Include="src\GameStates\GSHelp.h" />

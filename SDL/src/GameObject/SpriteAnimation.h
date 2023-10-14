@@ -22,6 +22,8 @@ protected:
 	//std::shared_ptr<TextureManager> m_texture;
 public:
 	SpriteAnimation(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float  frameTime);
+	SpriteAnimation(std::shared_ptr<TextureManager> texture);
+	SpriteAnimation();
 	~SpriteAnimation();
 
 	void		Init() override;

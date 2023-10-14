@@ -7,6 +7,9 @@
 #include "GameObject/Weapon/Gun.h"
 #include "GameObject/Weapon/Gun1.h"
 #include "GameObject/Weapon/Gun2.h"
+#include "GameObject/Weapon/Gun3.h"
+#include "GameObject/Weapon/Gun4.h"
+#include "GameObject/Weapon/Projectile1.h"
 
 class Sprite2D;
 class SpriteAnimation;
@@ -43,6 +46,7 @@ private:
 	std::shared_ptr<SpriteAnimation> obj;
 	std::shared_ptr<Monster> obj_monster;
 	std::shared_ptr<Player> m_player;
+	std::shared_ptr<Projectile> m_projectile;
 	std::shared_ptr<Gun> m_gun;
 	std::shared_ptr<MouseButton> button;
 	AimMouse aimMouse;

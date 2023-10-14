@@ -1,34 +1,47 @@
 #include "Projectile.h"
-#define SPEEP_PROJECTILE 200
 #include <cmath>
 
-ProjectTile::ProjectTile(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime, double angle) : SpriteAnimation(texture, spriteRow, frameCount, numAction, frameTime)
+Projectile::Projectile(std::shared_ptr<TextureManager> texture, double angle) : SpriteAnimation(texture)
 {
-	m_currentFrame = 0;
-	m_currentTicks = 0;
-	m_lastUpdate = SDL_GetTicks();
+	m_pTexture = texture;
 	m_angle = angle;
-	speed = SPEEP_PROJECTILE;
+	m_speed = 200;
+	m_spriteRow = 1;
+	m_numAction = 1;
+	m_frameTime = 0.1f;
+	m_iHeight = 24;
+	m_iWidth = 32;
+	printf("%f\n", m_angle);
+}
+
+
+Projectile::Projectile(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime) 
+	: SpriteAnimation(texture, spriteRow, frameCount, numAction, frameTime)
+{
+
 	Init();
 }
 
-ProjectTile::~ProjectTile()
+Projectile::~Projectile()
 {
-	printf("Huy doi tuong Projectile\n");
+	//printf("Huy doi tuong Projectile\n");
 }
 
-void ProjectTile::Init()
+void Projectile::Init()
 {
 }
 
-void ProjectTile::Update(float deltatime)
+void Projectile::Update(float deltatime)
 {
 	UpdatePos(deltatime);
 	UpdateAnimation(deltatime);
 }
 
-void ProjectTile::UpdatePos(float deltatime)
+void Projectile::UpdatePos(float deltatime)
 {
-	m_position.x = m_position.x + SPEEP_PROJECTILE * cos(m_angle);
-	m_position.y = m_position.y + SPEEP_PROJECTILE * sin(m_angle);
+
+}
+void Projectile::Draw(SDL_Renderer* renderer)
+{
+	SpriteAnimation::Draw(renderer);
 }

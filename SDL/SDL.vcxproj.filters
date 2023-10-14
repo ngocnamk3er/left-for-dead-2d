@@ -111,6 +111,24 @@
     <ClCompile Include="src\GameObject\Weapon\Gun1.cpp">
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Projectile1.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Projectile2.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Projectile3.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Projectile4.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Gun3.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Gun4.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\BaseObject.h">
@@ -198,6 +216,24 @@
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObject\Weapon\Gun2.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Projectile1.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Projectile2.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Projectile3.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Projectile4.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Gun3.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Gun4.h">
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
   </ItemGroup>

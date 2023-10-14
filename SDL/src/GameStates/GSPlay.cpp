@@ -19,7 +19,7 @@ GSPlay::~GSPlay()
 void GSPlay::Init()
 {
 	//auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D.nfg");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("bg_play1.tga");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("Map/map1.jpg");
 
 	// background
 
@@ -48,17 +48,15 @@ void GSPlay::Init()
 	//Add Monster
 	for (int i = 0; i < 1; i++)
 	{
-		texture = ResourceManagers::GetInstance()->GetTexture("Zombies/BucketheadZombie/spritesheet_bucket.png");
-		obj_monster = std::make_shared<Monster>(texture, 1, 15, 1, 0.15f);
-		obj_monster->SetSize(83, 72);
+		texture = ResourceManagers::GetInstance()->GetTexture("Zombies/Monster.png");
+		obj_monster = std::make_shared<Monster>(texture, 1, 6, 1, 0.15f);
+		obj_monster->SetSize(64, 64);
 		obj_monster->Set2DPosition(100 * i, 400);
 		m_listMonster.push_back(obj_monster);
 	}
 
 	//Add gun
-	m_gun = std::make_shared<Gun1>();
-	//m_gun->SetFlip(SDL_FLIP_NONE);
-	//Set gun for character
+	m_gun = std::make_shared<Gun4>();
 	m_player->SetGun(m_gun);
 
 	m_KeyPress.Left = 0;
@@ -213,6 +211,7 @@ void GSPlay::Update(float deltaTime)
 	{
 		it->Update(deltaTime);
 	}
+	//m_projectile->Update(deltaTime);
 }
 
 void GSPlay::Draw(SDL_Renderer* renderer)
@@ -229,4 +228,5 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 	{
 		it->Draw(renderer);
 	}
+	//m_projectile->Draw(renderer);
 }
