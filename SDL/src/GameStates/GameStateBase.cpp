@@ -3,6 +3,8 @@
 #include "GSMenu.h"
 #include "GSPlay.h"
 #include "GSHelp.h"
+#include "GSSelectLevel.h"
+
 GameStateBase::GameStateBase(StateType stateType) : m_stateType(stateType)
 {}
 
@@ -27,6 +29,10 @@ std::shared_ptr<GameStateBase> GameStateBase::CreateState(StateType stt)
 		break;
 	case StateType::STATE_CREDIT:
 		gs = std::make_shared<GSHelp>();
+		//GSPLAY
+		break;
+	case StateType::STATE_SELECT_LEVEl:
+		gs = std::make_shared<GSSelectLevel>();
 		//GSPLAY
 		break;
 	default:

@@ -48,8 +48,8 @@ void GSPlay::Init()
 	//Add Monster
 	for (int i = 0; i < 1; i++)
 	{
-		texture = ResourceManagers::GetInstance()->GetTexture("Zombies/Monster.png");
-		obj_monster = std::make_shared<Monster>(texture, 1, 6, 1, 0.15f);
+		texture = ResourceManagers::GetInstance()->GetTexture("Zombies/Monster1.png");
+		obj_monster = std::make_shared<Monster>(texture, 1, 18, 1, 0.15f);
 		obj_monster->SetSize(64, 64);
 		obj_monster->Set2DPosition(100 * i, 400);
 		m_listMonster.push_back(obj_monster);

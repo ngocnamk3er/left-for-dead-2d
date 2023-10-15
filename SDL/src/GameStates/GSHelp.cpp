@@ -1,6 +1,6 @@
 #include "GSHelp.h"
 
-GSHelp::GSHelp() : GameStateBase(StateType::STATE_MENU),
+GSHelp::GSHelp() : GameStateBase(StateType::STATE_CREDIT),
 m_background(nullptr), m_listButton(std::list<std::shared_ptr<MouseButton>>{})
 {
 }

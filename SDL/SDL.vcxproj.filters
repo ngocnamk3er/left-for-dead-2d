@@ -129,6 +129,9 @@
     <ClCompile Include="src\GameObject\Weapon\Gun4.cpp">
       <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameStates\GSSelectLevel.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\BaseObject.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\Weapon\Gun4.h">
       <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSSelectLevel.h">
+      <Filter>Source Files\GameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

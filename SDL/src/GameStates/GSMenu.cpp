@@ -42,7 +42,8 @@ void GSMenu::Init()
 	btnPlay->SetSize(200, 50);
 	btnPlay->Set2DPosition((SCREEN_WIDTH - btnPlay->GetWidth()) / 2, (SCREEN_HEIDHT - btnPlay->GetHeight()) / 2);
 	btnPlay->SetOnClick([]() {
-		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
+		printf("check");
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_SELECT_LEVEl);
 		});
 	m_listButton.push_back(btnPlay);
 
@@ -76,7 +77,7 @@ void GSMenu::Init()
 	m_textGameName->LoadFromRenderText("LEFT 4 DEAD 2D");
 	m_Sound = std::make_shared<Sound>();
 	m_Sound->LoadSound("Data/Sounds/Alarm01.wav");
-	m_Sound->PlaySound();
+	//m_Sound->PlaySound();
 
 	//cursorIcon = IMG_Load("Data/Textures/GUI/cursorImage.png");
 	//customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
@@ -105,7 +106,7 @@ void GSMenu::Pause()
 
 void GSMenu::Resume()
 {
-	m_Sound->PlaySound();
+	//m_Sound->PlaySound();
 	SDL_SetCursor(customCursor);
 }
 
