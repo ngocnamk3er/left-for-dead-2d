@@ -1,4 +1,6 @@
 #include "GSSelectLevel.h"
+#include "GSPlay.h"
+#include <iostream>
 
 GSSelectLevel::GSSelectLevel() : GameStateBase(StateType::STATE_SELECT_LEVEl),
 m_background(nullptr), m_listButton(std::list<std::shared_ptr<MouseButton>>{}), m_textGameName(nullptr)
@@ -47,7 +49,8 @@ void GSSelectLevel::Init()
 		//btnClose = std::make_shared<MouseButton>(texture);
 		btnSelectLevelI->SetSize(128, 128);
 		btnSelectLevelI->Set2DPosition(SCREEN_WIDTH / 2 - 320 + 256 * (i - 1), SCREEN_HEIDHT / 2 - 64);
-		btnSelectLevelI->SetOnClick([this]() {
+		btnSelectLevelI->SetOnClick([i]() {//i is level
+			GSPlay::setLevel(i);
 			GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
 		});
 		m_listButton.push_back(btnSelectLevelI);

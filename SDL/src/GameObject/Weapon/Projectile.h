@@ -8,7 +8,7 @@ public:
 	Projectile(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime);
 	~Projectile();
 	void	Init() override;
-	virtual void Update(float deltatime);
+	void Update(float deltatime);
 	void UpdatePos(float deltatime);
 	virtual void Draw(SDL_Renderer* renderer);
 protected:

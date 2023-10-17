@@ -1,6 +1,8 @@
 #include "Projectile.h"
 #include <cmath>
 
+#define ONE_RAD 180
+
 Projectile::Projectile(std::shared_ptr<TextureManager> texture, double angle) : SpriteAnimation(texture)
 {
 	m_pTexture = texture;
@@ -39,7 +41,8 @@ void Projectile::Update(float deltatime)
 
 void Projectile::UpdatePos(float deltatime)
 {
-
+	m_position.x = m_position.x + m_speed * cos(m_angle / ONE_RAD * M_PI) * deltatime;
+	m_position.y = m_position.y + m_speed * sin(m_angle / ONE_RAD * M_PI) * deltatime;
 }
 void Projectile::Draw(SDL_Renderer* renderer)
 {

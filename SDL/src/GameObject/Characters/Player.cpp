@@ -7,10 +7,7 @@ using namespace std;
 
 Player::Player(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime) : SpriteAnimation(texture, spriteRow, frameCount, numAction, frameTime)
 {
-	m_currentFrame = 0;
-	m_currentTicks = 0;
-	m_lastUpdate = SDL_GetTicks();
-	Init();
+
 }
 Player::~Player()
 {

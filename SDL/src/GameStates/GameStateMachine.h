@@ -12,6 +12,7 @@ enum class StateType
 	STATE_OPTION, 
 	STATE_CREDIT
 };
+
 class GameStateMachine : public CSingleton<GameStateMachine>
 {
 public:

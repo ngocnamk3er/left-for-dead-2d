@@ -132,6 +132,18 @@
     <ClCompile Include="src\GameStates\GSSelectLevel.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Characters\Monster1.cpp">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Characters\Monster2.cpp">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Characters\Monster3.cpp">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Characters\Monster4.cpp">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\BaseObject.h">
@@ -241,6 +253,18 @@
     </ClInclude>
     <ClInclude Include="src\GameStates\GSSelectLevel.h">
       <Filter>Source Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Characters\Monster1.h">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Characters\Monster2.h">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Characters\Monster3.h">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Characters\Monster4.h">
+      <Filter>Source Files\GameObjects\Characters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

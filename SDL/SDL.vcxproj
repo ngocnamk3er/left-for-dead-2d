@@ -170,6 +170,10 @@
     <ClCompile Include="src\GameManager\ResourceManagers.cpp" />
     <ClCompile Include="src\GameObject\Camera.cpp" />
     <ClCompile Include="src\GameObject\Characters\Monster.cpp" />
+    <ClCompile Include="src\GameObject\Characters\Monster1.cpp" />
+    <ClCompile Include="src\GameObject\Characters\Monster2.cpp" />
+    <ClCompile Include="src\GameObject\Characters\Monster3.cpp" />
+    <ClCompile Include="src\GameObject\Characters\Monster4.cpp" />
     <ClCompile Include="src\GameObject\Characters\Player.cpp" />
     <ClCompile Include="src\GameObject\CMath.cpp" />
     <ClCompile Include="src\GameObject\Keyset.h" />
@@ -207,6 +211,10 @@
     <ClInclude Include="src\GameObject\BaseObject.h" />
     <ClInclude Include="src\GameObject\Camera.h" />
     <ClInclude Include="src\GameObject\Characters\Monster.h" />
+    <ClInclude Include="src\GameObject\Characters\Monster1.h" />
+    <ClInclude Include="src\GameObject\Characters\Monster2.h" />
+    <ClInclude Include="src\GameObject\Characters\Monster3.h" />
+    <ClInclude Include="src\GameObject\Characters\Monster4.h" />
     <ClInclude Include="src\GameObject\Characters\Player.h" />
     <ClInclude Include="src\GameObject\CMath.h" />
     <ClInclude Include="src\GameObject\Define.h" />

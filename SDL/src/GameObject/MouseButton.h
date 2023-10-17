@@ -19,6 +19,7 @@ public:
 	SDL_Point* GetButtonPosition();
 	
 	void	SetOnClick(std::function<void(void)>pBtClick);
+	int test = 10;
 private:
 	std::function<void(void)>m_pBtClick;
 	//Top left position

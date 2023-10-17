@@ -5,6 +5,12 @@
 #include "GameObject/SpriteAnimation.h"
 #include "GameObject/Camera.h"
 #include "KeyState.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
+
 
 GSPlay::GSPlay()
 {
@@ -18,11 +24,11 @@ GSPlay::~GSPlay()
 
 void GSPlay::Init()
 {
+	LoadCSV(s_pLevel);
 	//auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D.nfg");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("Map/map1.jpg");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("Map/map"+std::to_string(s_pLevel)+".jpg");
 
 	// background
-
 	m_background = std::make_shared<Sprite2D>(texture, SDL_FLIP_NONE);
 	m_background->SetSize(SCREEN_WIDTH, SCREEN_HEIDHT);
 	m_background->Set2DPosition(0, 0);
@@ -37,6 +43,13 @@ void GSPlay::Init()
 		});
 	m_listButton.push_back(button);
 
+	cursorIcon = IMG_Load("Data/Textures/GUI/target.svg");
+	customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
+	SDL_FreeSurface(cursorIcon);
+	SDL_SetCursor(customCursor);
+
+	//Get data for m_Dynamic Map and make object
+
 	// Add Player
 	texture = ResourceManagers::GetInstance()->GetTexture("MainCharacter/3 Dude_Monster/Dude_Monster_Run_6.png");
 	m_player = std::make_shared<Player>(texture, 1, 6, 1, 0.15f);
@@ -46,13 +59,40 @@ void GSPlay::Init()
 	//m_listAnimation.push_back(obj);
 
 	//Add Monster
-	for (int i = 0; i < 1; i++)
+
+	for (int i = 0; i < m_DynamicMap.size(); i++)
 	{
-		texture = ResourceManagers::GetInstance()->GetTexture("Zombies/Monster1.png");
-		obj_monster = std::make_shared<Monster>(texture, 1, 18, 1, 0.15f);
-		obj_monster->SetSize(64, 64);
-		obj_monster->Set2DPosition(100 * i, 400);
-		m_listMonster.push_back(obj_monster);
+		for (int j = 0; j < m_DynamicMap[i].size(); j++)
+		{
+			switch (m_DynamicMap[i][j])
+			{
+			case 11: {
+				printf("checkkkkkk\n");
+				obj_monster = Monster::CreateMonster(MonsterType::MONSTER1);
+				obj_monster->Set2DPosition(j * 64, i * 64);
+				m_listMonster.push_back(obj_monster);
+				break;
+			}
+			case 22: {
+				obj_monster = Monster::CreateMonster(MonsterType::MONSTER2);
+				obj_monster->Set2DPosition(j * 64, i * 64);
+				m_listMonster.push_back(obj_monster);
+				break;
+			}
+			case 33: {
+				obj_monster = Monster::CreateMonster(MonsterType::MONSTER3);
+				obj_monster->Set2DPosition(j * 64, i * 64);
+				m_listMonster.push_back(obj_monster);
+				break;
+			}
+			case 44: {
+				obj_monster = Monster::CreateMonster(MonsterType::MONSTER4);
+				obj_monster->Set2DPosition(j * 64, i * 64);
+				m_listMonster.push_back(obj_monster);
+				break;
+			}
+			}
+		}
 	}
 
 	//Add gun
@@ -64,10 +104,7 @@ void GSPlay::Init()
 	m_KeyPress.Right = 0;
 	m_KeyPress.Up = 0;
 
-	cursorIcon = IMG_Load("Data/Textures/GUI/target.svg");
-	customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
-	SDL_FreeSurface(cursorIcon);
-	SDL_SetCursor(customCursor);
+
 }
 
 void GSPlay::Exit()
@@ -87,6 +124,43 @@ void GSPlay::Resume()
 
 }
 
+
+void GSPlay::LoadCSV(int level)
+{
+	std::ifstream file("Data/Map/dynamicmap"+std::to_string(s_pLevel)+".csv");
+	if (!file.is_open()) {
+		std::cerr << "Can not open CSV." << std::endl;
+		return;
+	}
+
+	std::string line;
+	while (std::getline(file, line)) {
+		std::vector<int> row;
+		std::stringstream ss(line);
+		std::string cell;
+
+		while (std::getline(ss, cell, ',')) {
+			try {
+				int cellValue = std::stoi(cell);
+				row.push_back(cellValue);
+			}
+			catch (const std::invalid_argument& e) {
+				std::cerr << "Cant convert data" << e.what() << std::endl;
+			}
+		}
+
+		m_DynamicMap.push_back(row);
+	}
+
+	file.close();
+
+	for (const auto& row : m_DynamicMap) {
+		for (int cell : row) {
+			std::cout << cell << "\t";
+		}
+		std::cout << std::endl;
+	}
+}
 
 void GSPlay::HandleEvents()
 {
@@ -229,4 +303,12 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 		it->Draw(renderer);
 	}
 	//m_projectile->Draw(renderer);
+}
+
+
+int GSPlay::s_pLevel;
+
+void GSPlay::setLevel(int level)
+{
+	s_pLevel = level;
 }

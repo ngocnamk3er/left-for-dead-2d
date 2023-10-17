@@ -21,12 +21,13 @@ public:
 	GSPlay();
 	~GSPlay();
 
-	void	Init() override;
+	void	Init();
 	void	Exit() override;
 
 	void	Pause() override;
 	void	Resume() override;
 
+	void	LoadCSV(int level);
 	void	HandleEvents() override;
 	void	HandleKeyEvents(SDL_Event& e) override;
 	void	HandleTouchEvents(SDL_Event& e) override;
@@ -35,6 +36,7 @@ public:
 	void	HandleMouseMoveEvents(int x, int y) override;
 	void	Update(float deltaTime) override;
 	void	Draw(SDL_Renderer* renderer) override;
+	static void setLevel(int level);
 	KeySet m_KeyPress;
 
 private:
@@ -54,4 +56,7 @@ private:
 	float m_Velocity = 10.0f;
 	SDL_Surface* cursorIcon;
 	SDL_Cursor* customCursor;
+	std::vector<std::vector<int>> m_DynamicMap;
+	std::vector<std::vector<int>> m_StaticMap;
+	static int s_pLevel;
 };

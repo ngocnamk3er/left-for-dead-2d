@@ -10,7 +10,7 @@ public:
 	static bool IsKeyPressed(SDL_Scancode scancode)
 	{
 		return keystate[scancode];
-	}
+	} 
 private:
 	static inline const Uint8* keystate = NULL;
 };
