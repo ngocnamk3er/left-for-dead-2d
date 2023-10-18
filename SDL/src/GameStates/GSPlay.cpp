@@ -19,6 +19,7 @@ GSPlay::GSPlay()
 
 GSPlay::~GSPlay()
 {
+	printf("Huy doi tuong GSPLAY\n");
 }
 
 
@@ -96,7 +97,7 @@ void GSPlay::Init()
 	}
 
 	//Add gun
-	m_gun = std::make_shared<Gun4>();
+	m_gun = std::make_shared<Gun3>();
 	m_player->SetGun(m_gun);
 
 	m_KeyPress.Left = 0;
@@ -276,16 +277,15 @@ void GSPlay::Update(float deltaTime)
 
 	for (auto it : m_listMonster)
 	{
-		it->Update(deltaTime);
+		if (!it->IsHidden()) {
+			it->Update(deltaTime);
+		}
 	}
 
 	m_player->Update(deltaTime, m_KeyPress, aimMouse);
+	
+	HandleCollision(deltaTime);
 
-	for (auto it : m_listButton)
-	{
-		it->Update(deltaTime);
-	}
-	//m_projectile->Update(deltaTime);
 }
 
 void GSPlay::Draw(SDL_Renderer* renderer)
@@ -294,7 +294,9 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 
 	for (auto it : m_listMonster)
 	{
-		it->Draw(renderer);
+		if (!it->IsHidden()) {
+			it->Draw(renderer);
+		}
 	}
 
 	m_player->Draw(renderer);
@@ -311,4 +313,9 @@ int GSPlay::s_pLevel;
 void GSPlay::setLevel(int level)
 {
 	s_pLevel = level;
+}
+
+void GSPlay::HandleCollision(float deltaTime)
+{
+	m_player->HandleCollison(m_StaticMap, m_listMonster);
 }

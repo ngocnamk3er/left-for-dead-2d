@@ -13,10 +13,11 @@ protected:
 	double m_angle = 0.0; // default angle
 	SDL_RendererFlip m_flip = SDL_FLIP_NONE;
 	std::shared_ptr<TextureManager> m_pTexture;
+	bool m_pIsHidden;
 public:
 	BaseObject() : m_pTexture(nullptr), m_position(Vector3(0.0f, 0.0f, 0.0f)), m_scale(Vector3(1.0f, 1.0f, 1.0f)) {}
 	BaseObject(std::shared_ptr<TextureManager> texture)
-		:m_pTexture(texture), m_position(Vector3(0.0f, 0.0f, 0.0f)) , m_scale(Vector3(1.0f, 1.0f, 1.0f) ){}
+		:m_pTexture(texture), m_position(Vector3(0.0f, 0.0f, 0.0f)) , m_scale(Vector3(1.0f, 1.0f, 1.0f)), m_pIsHidden(false){}
 	virtual void Init() = 0;
 	virtual void Draw(SDL_Renderer* renderer) = 0;
 	virtual void Update(float deltatime) = 0;

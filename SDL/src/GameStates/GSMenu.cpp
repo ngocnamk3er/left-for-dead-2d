@@ -8,6 +8,7 @@ m_background(nullptr), m_listButton(std::list<std::shared_ptr<MouseButton>>{}), 
 
 GSMenu::~GSMenu()
 {
+	printf("Huy doi tuong GS Menu\n");
 }
 
 

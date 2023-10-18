@@ -11,7 +11,7 @@ Player::Player(std::shared_ptr<TextureManager> texture, int spriteRow, int frame
 }
 Player::~Player()
 {
-
+	printf("Huy doi truong player\n");
 }
 
 void Player::Init()
@@ -83,5 +83,22 @@ void Player::DrawGun(SDL_Renderer* renderer)
 void Player::PullTrigger()
 {
 	m_gun->Shot();
+}
+void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<std::shared_ptr<Monster>> listMonster)
+{
+	for each (std::shared_ptr<Monster> monster in listMonster)
+	{
+		if (!monster->IsHidden()) {
+			for each (std::shared_ptr<Projectile> projectile in m_gun->GetListProjectile())
+			{
+				if (!projectile->IsHidden()) {
+					if (sqrt((pow(abs(monster->Get2DPosition().x - projectile->Get2DPosition().x), 2) + pow(abs(monster->Get2DPosition().y - projectile->Get2DPosition().y), 2))) <= 48) {
+						monster->SetHidden(true);
+						projectile->SetHidden(true);
+					}
+				}
+			}
+		}
+	}
 }
 ;

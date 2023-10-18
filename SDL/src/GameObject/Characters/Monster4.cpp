@@ -7,4 +7,5 @@ Monster4::Monster4(std::shared_ptr<TextureManager> texture, int spriteRow, int f
 
 Monster4::~Monster4()
 {
+	printf("huy doi truong monster4\n");
 }

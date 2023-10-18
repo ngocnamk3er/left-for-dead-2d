@@ -69,3 +69,12 @@ void Sprite2D::SetFlip(SDL_RendererFlip flip)
 	m_flip = flip;
 }
 
+void Sprite2D::SetHidden(bool isDead)
+{
+	m_pIsHidden = isDead;
+}
+bool Sprite2D::IsHidden()
+{
+	return m_pIsHidden;
+}
+

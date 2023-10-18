@@ -21,27 +21,3 @@ void Gun4::Shot()
 	newProjectile->Set2DPosition(m_position.x + m_iWidth / 4, m_position.y);
 	m_listProjectile.push_back(newProjectile);
 }
-
-void Gun4::Draw(SDL_Renderer* renderer)
-{
-	//printf("Draw 1\n");
-	DrawListProjectile(renderer);
-	Sprite2D::Draw(renderer);
-}
-
-void Gun4::UpdatePjectile(float deltatime)
-{
-
-	for each (auto projectile in m_listProjectile)
-	{
-		projectile->Update(deltatime);
-	}
-}
-
-void Gun4::DrawListProjectile(SDL_Renderer* renderer)
-{
-	for each (std::shared_ptr<Projectile> projectile in m_listProjectile)
-	{
-		projectile->Draw(renderer);
-	}
-}

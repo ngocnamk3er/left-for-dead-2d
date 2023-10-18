@@ -44,6 +44,8 @@ public:
 	virtual void MoveTop(float deltaTime);
 	virtual void MoveRight(float deltaTime);
 	virtual void MoveDown(float deltaTime);
+	void SetHidden(bool isDead);
+	bool IsHidden();
 	/*virtual void MoveLeft(float deltaTime);
 	virtual void MoveLeft(float deltaTime);*/
 };

@@ -59,4 +59,7 @@ private:
 	std::vector<std::vector<int>> m_DynamicMap;
 	std::vector<std::vector<int>> m_StaticMap;
 	static int s_pLevel;
+
+
+	void	HandleCollision(float deltaTime);
 };

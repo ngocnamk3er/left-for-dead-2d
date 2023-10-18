@@ -125,3 +125,12 @@ void SpriteAnimation::MoveTop(float deltaTime)
 {
 	m_position.y -= 90 * deltaTime;
 }
+
+void SpriteAnimation::SetHidden(bool isDead)
+{
+	m_pIsHidden = isDead;
+}
+bool SpriteAnimation::IsHidden()
+{
+	return m_pIsHidden;
+}

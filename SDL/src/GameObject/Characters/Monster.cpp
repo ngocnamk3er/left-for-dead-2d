@@ -1,6 +1,9 @@
 #include "Monster.h"
 #include "Monster1.h"
-
+#include "Monster2.h"
+#include "Monster3.h"
+#include "Monster4.h"
+#include "Define.h"
 
 
 Monster::Monster(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime) : SpriteAnimation(texture, spriteRow, frameCount, numAction, frameTime)
@@ -8,11 +11,12 @@ Monster::Monster(std::shared_ptr<TextureManager> texture, int spriteRow, int fra
 	m_speed = 200;
 	m_iWidth = 64;
 	m_iHeight = 64;
+	m_pIsHidden = false;
 }
 
 Monster::~Monster()
 {
-
+	printf("huy doi tuong monster\n");
 }
 
 std::shared_ptr<TextureManager> Monster::textureMonster1;
@@ -51,19 +55,19 @@ std::shared_ptr<Monster> Monster::CreateMonster(MonsterType stt)
 	case MonsterType::MONSTER2:
 	{
 		std::shared_ptr<TextureManager> textureMonster1 = ResourceManagers::GetInstance()->GetTexture("Monsters/Monster2.png");
-		monster = std::make_shared<Monster1>(textureMonster1, 1, 18, 1, 0.1f);
+		monster = std::make_shared<Monster2>(textureMonster1, 1, 18, 1, 0.1f);
 		break;
 	}
 	case MonsterType::MONSTER3:
 	{
 		std::shared_ptr<TextureManager> textureMonster1 = ResourceManagers::GetInstance()->GetTexture("Monsters/Monster3.png");
-		monster = std::make_shared<Monster1>(textureMonster1, 1, 18, 1, 0.1f);
+		monster = std::make_shared<Monster3>(textureMonster1, 1, 18, 1, 0.1f);
 		break;
 	}
 	case MonsterType::MONSTER4:
 	{
 		std::shared_ptr<TextureManager> textureMonster1 = ResourceManagers::GetInstance()->GetTexture("Monsters/Monster4.png");
-		monster = std::make_shared<Monster1>(textureMonster1, 1, 18, 1, 0.1f);
+		monster = std::make_shared<Monster4>(textureMonster1, 1, 18, 1, 0.1f);
 		break;
 	}
 	default:

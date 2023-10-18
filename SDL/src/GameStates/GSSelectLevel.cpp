@@ -10,6 +10,7 @@ m_background(nullptr), m_listButton(std::list<std::shared_ptr<MouseButton>>{}), 
 
 GSSelectLevel::~GSSelectLevel()
 {
+	printf("Huy doi truong GSSelectLevel\n");
 }
 
 

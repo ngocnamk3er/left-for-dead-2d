@@ -4,7 +4,7 @@
 
 Projectile1::Projectile1(std::shared_ptr<TextureManager> texture, double angle) : Projectile(texture, angle)
 {
-	m_speed = 100;
+	m_speed = 1000;
 	m_frameCount = 6;
 }
 

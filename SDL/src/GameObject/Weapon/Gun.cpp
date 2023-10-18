@@ -12,8 +12,13 @@ Gun::Gun(std::shared_ptr<TextureManager> texture, SDL_RendererFlip flip)
 
 void Gun::Draw(SDL_Renderer* renderer)
 {
-	Sprite2D::Draw(renderer);
 	DrawListProjectile(renderer);
+	Sprite2D::Draw(renderer);
+}
+
+std::list<std::shared_ptr<Projectile>> Gun::GetListProjectile()
+{
+	return m_listProjectile;
 }
 
 void Gun::UpdatePjectile(float deltatime)
@@ -28,7 +33,11 @@ void Gun::DrawListProjectile(SDL_Renderer* renderer)
 {
 	for each (auto projectile in m_listProjectile)
 	{
-		projectile->Draw(renderer);
+		//printf("%d\n", projectile->Get2DPosition);
+		if (!projectile->IsHidden()) {
+			
+			projectile->Draw(renderer);
+		}
 	}
 }
 
@@ -36,8 +45,3 @@ void Gun::Shot()
 {
 	//printf("parent gun shot\n");
 }
-
-//void Gun::Shot()
-//{
-//	printf("I am shooting\n");
-//}

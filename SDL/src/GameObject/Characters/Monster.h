@@ -27,4 +27,5 @@ private:
 	static std::shared_ptr<TextureManager> Monster::textureMonster4;
 protected:
 	int m_speed;
+	bool m_pIsHidden;
 };

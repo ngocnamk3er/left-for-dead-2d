@@ -8,6 +8,7 @@ GSIntro::GSIntro() : GameStateBase(StateType::STATE_INTRO), m_time(0.0f)
 
 GSIntro::~GSIntro()
 {
+	printf("Huy doi tuogn GSPlay\n");
 }
 
 void GSIntro::Init()
