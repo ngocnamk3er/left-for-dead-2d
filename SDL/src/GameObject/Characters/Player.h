@@ -20,4 +20,5 @@ private:
 	void SetGunAngle(AimMouse aimMouse);
 	void DrawGun(SDL_Renderer* renderer);
 	std::shared_ptr<Gun> m_gun;
+
 };

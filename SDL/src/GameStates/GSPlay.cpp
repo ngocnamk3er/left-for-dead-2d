@@ -286,6 +286,19 @@ void GSPlay::Update(float deltaTime)
 	
 	HandleCollision(deltaTime);
 
+	int count = 0;
+	for each (auto monster in m_listMonster)
+	{
+		if (monster->IsHidden()) {
+			count++;
+		}
+	}
+	if (count== m_listMonster.size()) {
+		GSPlay::setLevel(2);
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
+		printf("11111111111111111111111111111111111");
+	}
+
 }
 
 void GSPlay::Draw(SDL_Renderer* renderer)
