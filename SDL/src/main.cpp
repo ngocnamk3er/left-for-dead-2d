@@ -8,5 +8,7 @@ int main(int argc, char* args[])
 	//Free resources and close SDL
 	Game:: GetInstance()->FreeInstance();
 
+
+	//add branch thanhbl
 	return 0;
 }
