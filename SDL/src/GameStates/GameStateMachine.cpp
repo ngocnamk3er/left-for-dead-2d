@@ -65,7 +65,6 @@ void  GameStateMachine::PerformStateChange()
 			if (m_pActiveState->GetGameStateType() == StateType::STATE_INTRO || m_pActiveState->GetGameStateType() == StateType::STATE_PLAY)
 			{
 				// Cleanup Intro state
-				printf("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n");
 				m_pActiveState->Exit();
 				m_StateStack.pop_back();
 			}

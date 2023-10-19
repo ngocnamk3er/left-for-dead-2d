@@ -12,7 +12,7 @@
 #include <sstream>
 
 
-GSPlay::GSPlay()
+GSPlay::GSPlay() : GameStateBase(StateType::STATE_PLAY)
 {
 }
 
@@ -128,6 +128,8 @@ void GSPlay::Resume()
 
 void GSPlay::LoadCSV(int level)
 {
+
+	//make dynamic map
 	std::ifstream file("Data/Map/dynamicmap"+std::to_string(s_pLevel)+".csv");
 	if (!file.is_open()) {
 		std::cerr << "Can not open CSV." << std::endl;
@@ -155,12 +157,34 @@ void GSPlay::LoadCSV(int level)
 
 	file.close();
 
-	for (const auto& row : m_DynamicMap) {
-		for (int cell : row) {
-			std::cout << cell << "\t";
-		}
-		std::cout << std::endl;
+
+	//make static map
+	std::ifstream fileStaticmap("Data/Map/staticmap" + std::to_string(s_pLevel) + ".csv");
+	if (!fileStaticmap.is_open()) {
+		std::cerr << "Can not open CSV." << std::endl;
+		return;
 	}
+
+	std::string lineStaticmap;
+	while (std::getline(fileStaticmap, lineStaticmap)) {
+		std::vector<int> row;
+		std::stringstream ss(lineStaticmap);
+		std::string cell;
+
+		while (std::getline(ss, cell, ',')) {
+			try {
+				int cellValue = std::stoi(cell);
+				row.push_back(cellValue);
+			}
+			catch (const std::invalid_argument& e) {
+				std::cerr << "Cant convert data" << e.what() << std::endl;
+			}
+		}
+
+		m_StaticMap.push_back(row);
+	}
+
+	fileStaticmap.close();
 }
 
 void GSPlay::HandleEvents()
@@ -176,24 +200,16 @@ void GSPlay::HandleKeyEvents(SDL_Event& e)
 		switch (e.key.keysym.sym)
 		{
 		case SDLK_LEFT:
-			printf("MOVE LEFT\n");
-			//m_KeyPress |= 1;
 			m_KeyPress.Left = true;
 			break;
 		case SDLK_DOWN:
-			printf("MOVE DOWN\n");
-			//m_KeyPress |= 1 << 1;
 			m_KeyPress.Down = true;
 			break;
 		case SDLK_RIGHT:
-			printf("MOVE RIGHT\n");
 			m_KeyPress.Right = true;
-			//m_KeyPress |= 1 << 2;
 			break;
 		case SDLK_UP:
-			printf("MOVE UP\n");
 			m_KeyPress.Up = true;
-			//m_KeyPress |= 1 << 3;
 			break;
 		default:
 			break;
@@ -249,11 +265,9 @@ void GSPlay::HandleMouseMotionEvents(SDL_Event& e)
 void GSPlay::HandleMouseClickEvents(SDL_Event& e)
 {
 	if (e.type == SDL_MOUSEBUTTONDOWN) {
-		printf("down\n");
 		m_player->PullTrigger();
 	}
 	else if (e.type == SDL_MOUSEBUTTONUP) {
-		printf("up\n");
 	}
 }
 
@@ -269,6 +283,7 @@ void GSPlay::Update(float deltaTime)
 	//	break;
 	//}
 	// Key State event
+	//HandleCollision(deltaTime);
 
 	for (auto it : m_listButton)
 	{
@@ -282,9 +297,8 @@ void GSPlay::Update(float deltaTime)
 		}
 	}
 
-	m_player->Update(deltaTime, m_KeyPress, aimMouse);
+	m_player->Update(deltaTime, m_KeyPress, aimMouse,m_StaticMap);
 	
-	HandleCollision(deltaTime);
 
 	int count = 0;
 	for each (auto monster in m_listMonster)
@@ -293,11 +307,11 @@ void GSPlay::Update(float deltaTime)
 			count++;
 		}
 	}
-	if (count== m_listMonster.size()) {
-		GSPlay::setLevel(2);
+	/*if (count== m_listMonster.size()) {
+		GSPlay::setLevel(GSPlay::getLevel() + 1);
 		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
-		printf("11111111111111111111111111111111111");
-	}
+	}*/
+	HandleCollision(deltaTime);
 
 }
 
@@ -328,7 +342,12 @@ void GSPlay::setLevel(int level)
 	s_pLevel = level;
 }
 
+int GSPlay::getLevel()
+{
+	return s_pLevel;
+}
+
 void GSPlay::HandleCollision(float deltaTime)
 {
-	m_player->HandleCollison(m_StaticMap, m_listMonster);
+	m_player->HandleCollison(m_StaticMap, m_listMonster, deltaTime);
 }

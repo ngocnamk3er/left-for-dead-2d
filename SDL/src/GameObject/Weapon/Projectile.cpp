@@ -13,7 +13,6 @@ Projectile::Projectile(std::shared_ptr<TextureManager> texture, double angle) : 
 	m_frameTime = 0.1f;
 	m_iHeight = 24;
 	m_iWidth = 32;
-	printf("%f\n", m_angle);
 }
 
 
@@ -26,7 +25,6 @@ Projectile::Projectile(std::shared_ptr<TextureManager> texture, int spriteRow, i
 
 Projectile::~Projectile()
 {
-	//printf("Huy doi tuong Projectile\n");
 }
 
 void Projectile::Init()

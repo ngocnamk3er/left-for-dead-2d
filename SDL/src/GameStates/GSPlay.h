@@ -37,6 +37,7 @@ public:
 	void	Update(float deltaTime) override;
 	void	Draw(SDL_Renderer* renderer) override;
 	static void setLevel(int level);
+	static int getLevel();
 	KeySet m_KeyPress;
 
 private:

@@ -62,7 +62,6 @@ void GSIntro::HandleMouseMoveEvents(int x, int y)
 void GSIntro::Update(float deltaTime)
 {
 	m_time += deltaTime;
-	//printf("DeltaTime = %f", deltaTime);
 	if (m_time > 1.5f)
 	{
 		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_MENU);

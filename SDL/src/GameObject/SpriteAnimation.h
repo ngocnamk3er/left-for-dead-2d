@@ -40,10 +40,6 @@ public:
 	void		SetSize(int width, int height);
 	int GetWidth();
 	int GetHeight();
-	virtual void MoveLeft(float deltaTime);
-	virtual void MoveTop(float deltaTime);
-	virtual void MoveRight(float deltaTime);
-	virtual void MoveDown(float deltaTime);
 	void SetHidden(bool isDead);
 	bool IsHidden();
 	/*virtual void MoveLeft(float deltaTime);

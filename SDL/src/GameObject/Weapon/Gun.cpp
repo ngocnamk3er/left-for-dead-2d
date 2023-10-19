@@ -33,7 +33,6 @@ void Gun::DrawListProjectile(SDL_Renderer* renderer)
 {
 	for each (auto projectile in m_listProjectile)
 	{
-		//printf("%d\n", projectile->Get2DPosition);
 		if (!projectile->IsHidden()) {
 			
 			projectile->Draw(renderer);
@@ -43,5 +42,4 @@ void Gun::DrawListProjectile(SDL_Renderer* renderer)
 
 void Gun::Shot()
 {
-	//printf("parent gun shot\n");
 }
