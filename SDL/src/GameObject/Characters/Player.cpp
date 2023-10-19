@@ -87,27 +87,18 @@ void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<s
 			}
 		}
 	}
-	if (StaticMap[(int)((m_position.y + m_pSpeedY * deltatime) / 64)][(int)((m_position.x + m_pSpeedX * deltatime) / 64)] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.x + m_pSpeedX * deltatime) / 64] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime) / 64][(int)(m_position.x + m_pSpeedX * deltatime + m_iHeight) / 64] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.y + m_pSpeedY * deltatime + m_iHeight) / 64] != 15
-		) {
-		m_pSpeedX = 0;
-		m_pSpeedY = 0;
-	}
-	printf("---------------%d-----------\n", StaticMap[(int)((m_position.y + m_pSpeedY) / 64)][(int)((m_position.x + m_pSpeedX) / 64)]);
-	printf("---------------%d--%d---------\n", (int)((m_position.y + 0) / 64),(int)((m_position.x + 0) / 64));
 }
 void Player::SetSpeed(KeySet keyPress, std::vector<std::vector<int>> StaticMap, float deltatime)
 {
 	m_pSpeedX = keyPress.Left * (-90) + keyPress.Right * 90;
 	m_pSpeedY = keyPress.Up * (-90) + keyPress.Down * 90;
-	if (StaticMap[(int)((m_position.y + m_pSpeedY * deltatime) / 64)][(int)((m_position.x + m_pSpeedX * deltatime) / 64)] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.x + m_pSpeedX * deltatime) / 64] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime) / 64][(int)(m_position.x + m_pSpeedX * deltatime + m_iHeight) / 64] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.y + m_pSpeedY * deltatime + m_iHeight) / 64] != 15
+	if (StaticMap[(int)((m_position.y + m_pSpeedY * deltatime             )/ 64)][(int)((m_position.x + m_pSpeedX * deltatime           )/ 64)] != 15
+		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.x + m_pSpeedX * deltatime            ) / 64] != 15
+		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime           ) / 64][(int)(m_position.x + m_pSpeedX * deltatime + m_iHeight) / 64] != 15
+		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.x + m_pSpeedX * deltatime + m_iHeight) / 64] != 15
 		) {
 		m_pSpeedX = 0;
 		m_pSpeedY = 0;
 	}
+
 }
