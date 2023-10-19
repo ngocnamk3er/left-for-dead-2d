@@ -1,6 +1,9 @@
 #include "Player.h"
 #include <cmath>
 #include <iostream>
+#include <Point.h>
+#include "Define.h"
+
 #define ONE_RAD 180
 
 using namespace std;
@@ -92,13 +95,49 @@ void Player::SetSpeed(KeySet keyPress, std::vector<std::vector<int>> StaticMap, 
 {
 	m_pSpeedX = keyPress.Left * (-90) + keyPress.Right * 90;
 	m_pSpeedY = keyPress.Up * (-90) + keyPress.Down * 90;
-	if (StaticMap[(int)((m_position.y + m_pSpeedY * deltatime             )/ 64)][(int)((m_position.x + m_pSpeedX * deltatime           )/ 64)] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.x + m_pSpeedX * deltatime            ) / 64] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime           ) / 64][(int)(m_position.x + m_pSpeedX * deltatime + m_iHeight) / 64] != 15
-		|| StaticMap[(int)(m_position.y + m_pSpeedY * deltatime + m_iWidth) / 64][(int)(m_position.x + m_pSpeedX * deltatime + m_iHeight) / 64] != 15
-		) {
-		m_pSpeedX = 0;
-		m_pSpeedY = 0;
+	if (m_pSpeedX < 0)
+	{
+		SetFlip(SDL_FLIP_HORIZONTAL);
+	}
+	else if (m_pSpeedX > 0)
+	{
+		SetFlip(SDL_FLIP_NONE);
 	}
 
+	Point LeftTop = { m_position.x, m_position.y };
+	Point RightTop = { m_position.x + m_iWidth, m_position.y };
+	Point LeftDown = { m_position.x, m_position.y + m_iHeight };
+	Point RightDown = { m_position.x + m_iWidth, m_position.y + m_iHeight };
+
+	float y = m_position.y;
+
+	if (LeftTop.x + m_pSpeedX * deltatime <=  0) {
+		m_pSpeedX = 0;
+	}
+	if (RightTop.x + m_pSpeedX * deltatime >= SCREEN_WIDTH) {
+		m_pSpeedX = 0;
+	}
+	if (LeftTop.y + m_pSpeedY * deltatime <= 0 ) {
+		m_pSpeedY = 0;
+	}
+	if (LeftDown.y + m_pSpeedY * deltatime >= SCREEN_HEIDHT) {
+		m_pSpeedY = 0;
+	}
+	
+	if (StaticMap[(int)(LeftTop.y / 64)][(int)((LeftTop.x + m_pSpeedX * deltatime) / 64)] != 15
+		|| StaticMap[(int)(RightTop.y / 64)][(int)((RightTop.x + m_pSpeedX * deltatime) / 64)] != 15
+		|| StaticMap[(int)(RightDown.y / 64)][(int)((LeftDown.x + m_pSpeedX * deltatime) / 64)] != 15
+		|| StaticMap[(int)(RightDown.y / 64)][(int)((RightDown.x + m_pSpeedX * deltatime) / 64)] != 15
+		)
+	{
+		m_pSpeedX = 0;
+	}
+	if (StaticMap[(int)((LeftTop.y + m_pSpeedY * deltatime) / 64)][(int)((LeftTop.x) / 64)] != 15
+		|| StaticMap[(int)((RightTop.y + m_pSpeedY * deltatime) / 64)][(int)((RightTop.x) / 64)] != 15
+		|| StaticMap[(int)((LeftDown.y + m_pSpeedY * deltatime) / 64)][(int)((LeftDown.x) / 64)] != 15
+		|| StaticMap[(int)((RightDown.y + m_pSpeedY * deltatime) / 64)][(int)((RightDown.x) / 64)] != 15
+		)
+	{
+		m_pSpeedY = 0;
+	}
 }

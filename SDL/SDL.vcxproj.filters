@@ -266,5 +266,8 @@
     <ClInclude Include="src\GameObject\Characters\Monster4.h">
       <Filter>Source Files\GameObjects\Characters</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameObject\Point.h">
+      <Filter>Source Files\GameObjects\Characters</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
