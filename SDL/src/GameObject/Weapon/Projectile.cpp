@@ -33,8 +33,11 @@ void Projectile::Init()
 
 void Projectile::Update(float deltatime)
 {
-	UpdatePos(deltatime);
-	UpdateAnimation(deltatime);
+	if (m_pIsHidden==false) {
+		printf("update projectile\n");
+		UpdatePos(deltatime);
+		UpdateAnimation(deltatime);
+	}
 }
 
 void Projectile::UpdatePos(float deltatime)
@@ -44,5 +47,22 @@ void Projectile::UpdatePos(float deltatime)
 }
 void Projectile::Draw(SDL_Renderer* renderer)
 {
-	SpriteAnimation::Draw(renderer);
+	if (!m_pIsHidden) {
+		SpriteAnimation::Draw(renderer);
+	}
+}
+
+int Projectile::GetWidth()
+{
+	return m_iWidth;
+}
+
+int Projectile::GetHeight()
+{
+	return m_iHeight;
+}
+
+void Projectile::SetSpeed(float speed)
+{
+	m_speed = speed;
 }

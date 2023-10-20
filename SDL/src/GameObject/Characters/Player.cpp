@@ -45,7 +45,7 @@ void	Player::UpdatePos(float deltatime) {
 
 void Player::UpdateHitbox()
 {
-	m_pHitbox.x= m_position.x + 12;
+	m_pHitbox.x = m_position.x + 12;
 	m_pHitbox.y = m_position.y + 12;
 }
 
@@ -87,7 +87,7 @@ void Player::PullTrigger()
 }
 void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<std::shared_ptr<Monster>> listMonster, float deltatime)
 {
-	for each (std::shared_ptr<Monster> monster in listMonster)
+	/*for each (std::shared_ptr<Monster> monster in listMonster)
 	{
 		if (!monster->IsHidden()) {
 			for each (std::shared_ptr<Projectile> projectile in m_gun->GetListProjectile())
@@ -99,6 +99,34 @@ void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<s
 					}
 				}
 			}
+		}
+	}*/
+	for each (std::shared_ptr<Projectile> prjtile in m_gun->GetListProjectile())
+	{
+		if (!prjtile->IsHidden()) {
+			for each (std::shared_ptr<Monster> monster in listMonster)
+			{
+				if (!monster->IsHidden()) {
+					if (sqrt((pow(abs(monster->Get2DPosition().x - prjtile->Get2DPosition().x), 2) + pow(abs(monster->Get2DPosition().y - prjtile->Get2DPosition().y), 2))) <= 48) {
+						monster->SetHidden(true);
+						prjtile->SetHidden(true);
+					}
+				}
+			}
+
+			if (prjtile->Get2DPosition().x < 0 || prjtile->Get2DPosition().x > SCREEN_WIDTH + prjtile->GetWidth()) {
+				prjtile->SetHidden(true);
+				prjtile->SetSpeed(0);
+			}
+			else if (prjtile->Get2DPosition().y < 0 || prjtile->Get2DPosition().y > SCREEN_HEIDHT + prjtile->GetHeight()) {
+				prjtile->SetHidden(true);
+			}
+			else if (StaticMap[(int)((prjtile->Get2DPosition().y + prjtile->GetHeight() / 2) / 64)][(int)((prjtile->Get2DPosition().x + prjtile->GetWidth() / 2) / 64)] != 15) {
+				prjtile->SetHidden(true);
+			}
+
+
+
 		}
 	}
 }
@@ -121,19 +149,19 @@ void Player::SetSpeed(KeySet keyPress, std::vector<std::vector<int>> StaticMap, 
 	Point RightDown = { m_pHitbox.x + m_pHitbox.width, m_pHitbox.y + m_pHitbox.height };
 
 
-	if (LeftTop.x + m_pSpeedX * deltatime <=  0) {
+	if (LeftTop.x + m_pSpeedX * deltatime <= 0) {
 		m_pSpeedX = 0;
 	}
 	if (RightTop.x + m_pSpeedX * deltatime >= SCREEN_WIDTH) {
 		m_pSpeedX = 0;
 	}
-	if (LeftTop.y + m_pSpeedY * deltatime <= 0 ) {
+	if (LeftTop.y + m_pSpeedY * deltatime <= 0) {
 		m_pSpeedY = 0;
 	}
 	if (LeftDown.y + m_pSpeedY * deltatime >= SCREEN_HEIDHT) {
 		m_pSpeedY = 0;
 	}
-	
+
 	if (StaticMap[(int)(LeftTop.y / 64)][(int)((LeftTop.x + m_pSpeedX * deltatime) / 64)] != 15
 		|| StaticMap[(int)(RightTop.y / 64)][(int)((RightTop.x + m_pSpeedX * deltatime) / 64)] != 15
 		|| StaticMap[(int)(RightDown.y / 64)][(int)((LeftDown.x + m_pSpeedX * deltatime) / 64)] != 15

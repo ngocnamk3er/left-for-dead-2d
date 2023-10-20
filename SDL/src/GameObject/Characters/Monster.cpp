@@ -78,7 +78,6 @@ void Monster::SetVelocity(Vector2 playerPos, std::vector<std::vector<int>> Stati
 
 	double angleDegrees = angleRadians * ONE_RAD / M_PI;
 
-
 	if ((float)(playerPos.x -  m_position.x < 0)) {
 		if (playerPos.y - m_position.y  < 0) {
 			angleDegrees = angleDegrees - ONE_RAD;
