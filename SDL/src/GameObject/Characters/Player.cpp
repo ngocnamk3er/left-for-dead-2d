@@ -114,19 +114,15 @@ void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<s
 				}
 			}
 
-			if (prjtile->Get2DPosition().x < 0 || prjtile->Get2DPosition().x > SCREEN_WIDTH + prjtile->GetWidth()) {
+			if (prjtile->Get2DPosition().x < 0 || prjtile->Get2DPosition().x + prjtile->GetWidth() > SCREEN_WIDTH) {
 				prjtile->SetHidden(true);
-				prjtile->SetSpeed(0);
 			}
-			else if (prjtile->Get2DPosition().y < 0 || prjtile->Get2DPosition().y > SCREEN_HEIDHT + prjtile->GetHeight()) {
+			else if (prjtile->Get2DPosition().y < 0 || prjtile->Get2DPosition().y + prjtile->GetHeight() > SCREEN_HEIDHT) {
 				prjtile->SetHidden(true);
 			}
 			else if (StaticMap[(int)((prjtile->Get2DPosition().y + prjtile->GetHeight() / 2) / 64)][(int)((prjtile->Get2DPosition().x + prjtile->GetWidth() / 2) / 64)] != 15) {
 				prjtile->SetHidden(true);
 			}
-
-
-
 		}
 	}
 }
