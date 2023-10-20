@@ -1,6 +1,7 @@
 #pragma once
 #include "SpriteAnimation.h"
 #include "GameManager/ResourceManagers.h"
+#include "CMath.h"
 
 class Monster;
 enum class MonsterType
@@ -17,7 +18,7 @@ public:
 	Monster(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float  frameTime);
 	~Monster();
 	static void Init();
-	virtual void Update(float deltatime);
+	virtual void Update(float deltatime, Vector2 playerPos);
 	virtual void UpdatePos(float deltatime);
 	static std::shared_ptr<Monster> CreateMonster(MonsterType stt);
 private:
@@ -28,4 +29,8 @@ private:
 protected:
 	int m_speed;
 	bool m_pIsHidden;
+	void SetVelocity(Vector2 playerPos);
+	void SetSpeed(Vector2 playerPos);
+	float m_VelocityX;
+	float m_VelocityY;
 };

@@ -301,7 +301,7 @@ void GSPlay::Update(float deltaTime)
 	for (auto it : m_listMonster)
 	{
 		if (!it->IsHidden()) {
-			it->Update(deltaTime);
+			it->Update(deltaTime, m_player->Get2DPosition());
 		}
 	}
 
@@ -327,6 +327,8 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 {
 	m_background->Draw(renderer);
 
+	m_player->Draw(renderer);
+
 	for (auto it : m_listMonster)
 	{
 		if (!it->IsHidden()) {
@@ -334,7 +336,6 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 		}
 	}
 
-	m_player->Draw(renderer);
 	for (auto it : m_listButton)
 	{
 		it->Draw(renderer);

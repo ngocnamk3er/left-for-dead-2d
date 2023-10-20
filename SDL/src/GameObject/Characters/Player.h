@@ -6,7 +6,7 @@
 #include "Monster.h"
 #include "Hitbox.h"
 
-
+class Monster;
 class Player : public SpriteAnimation {
 public:
 	Player(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float  frameTime);
