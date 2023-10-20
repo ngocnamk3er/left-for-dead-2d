@@ -301,7 +301,7 @@ void GSPlay::Update(float deltaTime)
 	for (auto it : m_listMonster)
 	{
 		if (!it->IsHidden()) {
-			it->Update(deltaTime, m_player->Get2DPosition());
+			it->Update(deltaTime, m_player->Get2DPosition(),m_StaticMap);
 		}
 	}
 
