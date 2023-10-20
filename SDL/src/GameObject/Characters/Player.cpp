@@ -10,7 +10,9 @@ using namespace std;
 
 Player::Player(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime) : SpriteAnimation(texture, spriteRow, frameCount, numAction, frameTime)
 {
-
+	m_pHitbox = { 0,0,0,0 };
+	m_pHitbox.width = 36;
+	m_pHitbox.height = 52;
 }
 Player::~Player()
 {
@@ -25,6 +27,7 @@ void Player::Init()
 void	Player::Update(float deltatime, KeySet keyPress, AimMouse aimMouse, std::vector<std::vector<int>> StaticMap) {
 	SetSpeed(keyPress, StaticMap, deltatime);
 	UpdatePos(deltatime);
+	UpdateHitbox();
 	SetGunAngle(aimMouse);
 	UpdateAnimation(deltatime);
 	m_gun->UpdatePjectile(deltatime);
@@ -39,6 +42,13 @@ void	Player::UpdatePos(float deltatime) {
 	m_position.x = m_position.x + deltatime * m_pSpeedX;
 	m_position.y = m_position.y + deltatime * m_pSpeedY;
 }
+
+void Player::UpdateHitbox()
+{
+	m_pHitbox.x= m_position.x + 12;
+	m_pHitbox.y = m_position.y + 12;
+}
+
 void Player::SetGun(std::shared_ptr<Gun> gun)
 {
 	m_gun = gun;
@@ -70,6 +80,7 @@ void Player::DrawGun(SDL_Renderer* renderer)
 {
 	m_gun->Draw(renderer);
 }
+
 void Player::PullTrigger()
 {
 	m_gun->Shot();
@@ -104,12 +115,11 @@ void Player::SetSpeed(KeySet keyPress, std::vector<std::vector<int>> StaticMap, 
 		SetFlip(SDL_FLIP_NONE);
 	}
 
-	Point LeftTop = { m_position.x, m_position.y };
-	Point RightTop = { m_position.x + m_iWidth, m_position.y };
-	Point LeftDown = { m_position.x, m_position.y + m_iHeight };
-	Point RightDown = { m_position.x + m_iWidth, m_position.y + m_iHeight };
+	Point LeftTop = { m_pHitbox.x, m_pHitbox.y };
+	Point RightTop = { m_pHitbox.x + m_pHitbox.width, m_pHitbox.y };
+	Point LeftDown = { m_pHitbox.x, m_pHitbox.y + m_pHitbox.height };
+	Point RightDown = { m_pHitbox.x + m_pHitbox.width, m_pHitbox.y + m_pHitbox.height };
 
-	float y = m_position.y;
 
 	if (LeftTop.x + m_pSpeedX * deltatime <=  0) {
 		m_pSpeedX = 0;

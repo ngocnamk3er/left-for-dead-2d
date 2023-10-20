@@ -4,6 +4,8 @@
 #include "GameObject/Weapon/Gun.h"
 #include "Weapon/AimMouse.h"
 #include "Monster.h"
+#include "Hitbox.h"
+
 
 class Player : public SpriteAnimation {
 public:
@@ -23,6 +25,7 @@ private:
 	std::shared_ptr<Gun> m_gun;
 	float m_pSpeedX = 0;
 	float m_pSpeedY = 0;
-
+	Hitbox m_pHitbox;
+	void UpdateHitbox();
 
 };

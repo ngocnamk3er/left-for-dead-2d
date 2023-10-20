@@ -210,6 +210,7 @@
     <ClInclude Include="src\GameManager\Singleton.h" />
     <ClInclude Include="src\GameObject\BaseObject.h" />
     <ClInclude Include="src\GameObject\Camera.h" />
+    <ClInclude Include="src\GameObject\Characters\Hitbox.h" />
     <ClInclude Include="src\GameObject\Characters\Monster.h" />
     <ClInclude Include="src\GameObject\Characters\Monster1.h" />
     <ClInclude Include="src\GameObject\Characters\Monster2.h" />
