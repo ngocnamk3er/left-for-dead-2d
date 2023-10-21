@@ -21,6 +21,7 @@ Monster::Monster(std::shared_ptr<TextureManager> texture, int spriteRow, int fra
 	m_pHitbox = { 0,0,0,0 };
 	m_pHitbox.width = 48;
 	m_pHitbox.height = 48;
+	m_pDame = 1;
 }
 
 Monster::~Monster()
@@ -128,7 +129,13 @@ void Monster::SetVelocity(Vector2 playerPos, std::vector<std::vector<int>> Stati
 	}
 
 }
-;
+
+
+float Monster::GetDame()
+{
+	return m_pDame;
+}
+
 
 std::shared_ptr<Monster> Monster::CreateMonster(MonsterType stt)
 {

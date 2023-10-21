@@ -53,6 +53,7 @@ void Player::SetGun(std::shared_ptr<Gun> gun)
 {
 	m_gun = gun;
 	m_gun->SetSize(64, 24);
+	m_gun->Set2DPosition(m_position.x + m_iWidth / 3, m_position.y + m_iHeight / 2);
 }
 //private
 void Player::SetGunAngle(AimMouse aimMouse)
@@ -85,7 +86,7 @@ void Player::PullTrigger()
 {
 	m_gun->Shot();
 }
-void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<std::shared_ptr<Monster>> listMonster, float deltatime)
+void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<std::shared_ptr<Monster>> listMonster, std::list<std::shared_ptr<Item>> listItems, float deltatime)
 {
 	/*for each (std::shared_ptr<Monster> monster in listMonster)
 	{
@@ -122,6 +123,51 @@ void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<s
 			}
 			else if (StaticMap[(int)((prjtile->Get2DPosition().y + prjtile->GetHeight() / 2) / 64)][(int)((prjtile->Get2DPosition().x + prjtile->GetWidth() / 2) / 64)] != 15) {
 				prjtile->SetHidden(true);
+			}
+		}
+	}
+	for each (std::shared_ptr<Monster> monster in listMonster)
+	{
+		if (!monster->IsHidden()) {
+			if (sqrt((pow(abs(monster->Get2DPosition().x - m_position.x), 2) + pow(abs(monster->Get2DPosition().y - m_position.y), 2))) <= 48) {
+				m_pHealth = m_pHealth - monster->GetDame() * deltatime;
+			}
+		}
+	}
+	for each (std::shared_ptr<Item> item in listItems)
+	{
+		if (!item->IsHidden()) {
+			//item->SetHidden(true); 
+			if (sqrt((pow(abs(item->Get2DPosition().x + item->GetWidth() / 2 - m_position.x - m_iWidth / 2), 2) + pow(abs(item->Get2DPosition().y + item->GetHeight() / 2 - m_position.y - m_iHeight / 2), 2))) <= 32) {
+				switch (item->GetItemType()){
+				case ItemType::GUN_1: {
+					std::shared_ptr<Gun1> m_gun = std::make_shared<Gun1>();
+					SetGun(m_gun);
+					break;
+				}
+				case ItemType::GUN_2: {
+					std::shared_ptr<Gun2> m_gun = std::make_shared<Gun2>();
+					SetGun(m_gun);
+					break;
+				}
+				case ItemType::GUN_3: {
+					std::shared_ptr<Gun3> m_gun = std::make_shared<Gun3>();
+					SetGun(m_gun);
+					break;
+				}
+				case ItemType::GUN_4: {
+					std::shared_ptr<Gun4> m_gun = std::make_shared<Gun4>();
+					SetGun(m_gun);
+					break;
+				}
+				default:
+					break;
+				}
+				
+				item->SetHidden(true);
+	
+				//m_gun = std::make_shared<Gun3>();
+				//m_player->SetGun(m_gun);
 			}
 		}
 	}
@@ -174,4 +220,9 @@ void Player::SetSpeed(KeySet keyPress, std::vector<std::vector<int>> StaticMap, 
 	{
 		m_pSpeedY = 0;
 	}
+}
+
+float Player::GetHealth()
+{
+	return m_pHealth;
 }

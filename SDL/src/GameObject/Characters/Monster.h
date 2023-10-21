@@ -22,6 +22,7 @@ public:
 	virtual void Update(float deltatime, Vector2 playerPos, std::vector<std::vector<int>> StaticMap);
 	virtual void UpdatePos(float deltatime);
 	static std::shared_ptr<Monster> CreateMonster(MonsterType stt);
+	float GetDame();
 private:
 	static std::shared_ptr<TextureManager> Monster::textureMonster1;
 	static std::shared_ptr<TextureManager> Monster::textureMonster2;
@@ -36,4 +37,5 @@ protected:
 	float m_VelocityY;
 	Hitbox m_pHitbox;
 	void UpdateHitbox();
+	float m_pDame;
 };

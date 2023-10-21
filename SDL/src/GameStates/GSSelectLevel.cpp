@@ -42,19 +42,22 @@ void GSSelectLevel::Init()
 	customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
 	SDL_SetCursor(customCursor);
 
-	for (int i = 1; i <= 3; i++)
+	for (int i = 1; i <= 2; i++)
 	{
-		printf("Make btn");
-		texture = ResourceManagers::GetInstance()->GetTexture("GUI/Button.png");
-		std::shared_ptr<MouseButton> btnSelectLevelI = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, std::to_string(i));
-		//btnClose = std::make_shared<MouseButton>(texture);
-		btnSelectLevelI->SetSize(128, 128);
-		btnSelectLevelI->Set2DPosition(SCREEN_WIDTH / 2 - 320 + 256 * (i - 1), SCREEN_HEIDHT / 2 - 64);
-		btnSelectLevelI->SetOnClick([i]() {//i is level
-			GSPlay::setLevel(i);
-			GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
-		});
-		m_listButton.push_back(btnSelectLevelI);
+		for (int j = 1; j <= 3; j++) 
+		{
+			printf("Make btn");
+			texture = ResourceManagers::GetInstance()->GetTexture("GUI/Button.png");
+			std::shared_ptr<MouseButton> btnSelectLevelI = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, std::to_string((i - 1)*3+j))	;
+			//btnClose = std::make_shared<MouseButton>(texture);
+			btnSelectLevelI->SetSize(128, 128);
+			btnSelectLevelI->Set2DPosition(SCREEN_WIDTH / 2 - 320 + 256 * (j - 1), SCREEN_HEIDHT / 2 - 192 + (i-1) * 256);
+			btnSelectLevelI->SetOnClick([i, j]() {//i is level
+				GSPlay::setLevel((i - 1) * 3 + j);
+				GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
+				});
+			m_listButton.push_back(btnSelectLevelI);
+		}
 	}
 
 }

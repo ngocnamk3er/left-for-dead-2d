@@ -10,6 +10,7 @@
 #include "GameObject/Weapon/Gun3.h"
 #include "GameObject/Weapon/Gun4.h"
 #include "GameObject/Weapon/Projectile1.h"
+#include "GameObject/Items/Item.h"
 
 class Sprite2D;
 class SpriteAnimation;
@@ -36,6 +37,7 @@ public:
 	void	HandleMouseMoveEvents(int x, int y) override;
 	void	Update(float deltaTime) override;
 	void	Draw(SDL_Renderer* renderer) override;
+	void	DrawHealthBar(SDL_Renderer* renderer);
 	static void setLevel(int level);
 	static int getLevel();
 	KeySet m_KeyPress;
@@ -51,6 +53,7 @@ private:
 	std::shared_ptr<Player> m_player;
 	std::shared_ptr<Projectile> m_projectile;
 	std::shared_ptr<Gun> m_gun;
+	std::list<std::shared_ptr<Item>> m_pListItems;
 	std::shared_ptr<MouseButton> button;
 	AimMouse aimMouse;
 	float time = 0.0f;

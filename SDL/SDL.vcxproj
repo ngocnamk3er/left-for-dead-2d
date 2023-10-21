@@ -176,6 +176,7 @@
     <ClCompile Include="src\GameObject\Characters\Monster4.cpp" />
     <ClCompile Include="src\GameObject\Characters\Player.cpp" />
     <ClCompile Include="src\GameObject\CMath.cpp" />
+    <ClCompile Include="src\GameObject\Items\Item.cpp" />
     <ClCompile Include="src\GameObject\Keyset.h" />
     <ClCompile Include="src\GameObject\MouseButton.cpp" />
     <ClCompile Include="src\GameObject\Renderer.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="src\GameObject\Characters\Player.h" />
     <ClInclude Include="src\GameObject\CMath.h" />
     <ClInclude Include="src\GameObject\Define.h" />
+    <ClInclude Include="src\GameObject\Items\Item.h" />
     <ClInclude Include="src\GameObject\KeyState.h" />
     <ClInclude Include="src\GameObject\MouseButton.h" />
     <ClInclude Include="src\GameObject\Point.h" />
