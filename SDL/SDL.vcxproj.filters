@@ -150,6 +150,9 @@
     <ClCompile Include="src\GameObject\Items\Item.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameStates\GSOver.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\BaseObject.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="src\GameObject\Items\Item.h">
       <Filter>Source Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStates\GSOver.h">
+      <Filter>Source Files\GameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

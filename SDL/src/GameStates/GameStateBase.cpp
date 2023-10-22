@@ -4,6 +4,7 @@
 #include "GSPlay.h"
 #include "GSHelp.h"
 #include "GSSelectLevel.h"
+#include "GSOver.h"
 
 GameStateBase::GameStateBase(StateType stateType) : m_stateType(stateType)
 {}
@@ -29,11 +30,15 @@ std::shared_ptr<GameStateBase> GameStateBase::CreateState(StateType stt)
 		break;
 	case StateType::STATE_CREDIT:
 		gs = std::make_shared<GSHelp>();
-		//GSPLAY
+		//GSCREDIT
 		break;
 	case StateType::STATE_SELECT_LEVEl:
 		gs = std::make_shared<GSSelectLevel>();
-		//GSPLAY
+		//GSSELECTLEVEL
+		break;
+	case StateType::STATE_OVER:
+		gs = std::make_shared<GSOver>();
+		//GSOver
 		break;
 	default:
 		break;

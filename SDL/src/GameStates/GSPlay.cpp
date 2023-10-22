@@ -4,6 +4,7 @@
 #include "GameObject/MouseButton.h"
 #include "GameObject/SpriteAnimation.h"
 #include "GameObject/Camera.h"
+#include "GameStates/GSSelectLevel.h"
 #include "KeyState.h"
 #include <iostream>
 #include <fstream>
@@ -68,7 +69,6 @@ void GSPlay::Init()
 			switch (m_DynamicMap[i][j])
 			{
 			case (int)MonsterType::MONSTER1: {
-				printf("checkkkkkk\n");
 				obj_monster = Monster::CreateMonster(MonsterType::MONSTER1);
 				obj_monster->Set2DPosition(j * 64, i * 64);
 				m_listMonster.push_back(obj_monster);
@@ -355,10 +355,16 @@ void GSPlay::Update(float deltaTime)
 		}
 		else {
 			GSPlay::setLevel(GSPlay::getLevel() + 1);
+			if (GSPlay::getLevel() > GSSelectLevel::GetLevel()) {
+				GSSelectLevel::InCreCurrentLevel();
+			}
 			GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
 		}
 	}
 	HandleCollision(deltaTime);
+	if (m_player->GetHealth() <= 0) {
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_OVER);
+	}
 
 }
 

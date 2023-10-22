@@ -35,7 +35,6 @@ void Projectile::Init()
 void Projectile::Update(float deltatime)
 {
 	if (m_pIsHidden==false) {
-		printf("update projectile\n");
 		UpdatePos(deltatime);
 		UpdateAnimation(deltatime);
 	}

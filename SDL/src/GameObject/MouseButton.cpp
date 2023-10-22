@@ -12,7 +12,7 @@ MouseButton::MouseButton() : Sprite2D(), m_pBtClick(nullptr), m_pFont(nullptr)
 MouseButton::MouseButton(std::shared_ptr<TextureManager> texture, SDL_RendererFlip flip, std::string text)
     : Sprite2D(texture, flip), m_pBtClick(nullptr), m_pFont(nullptr)
 {
-    m_textColor = { 255, 255, 255 };
+    m_textColor = { 255, 255, 255};
     m_pFont = TTF_OpenFont("Data/Textures/GUI/m6x11.ttf", 28); 
     m_text = text;
     if (m_pFont == nullptr)
