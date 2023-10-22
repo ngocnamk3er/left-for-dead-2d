@@ -115,7 +115,6 @@ void GSPlay::Init()
 				item->SetSize(32, 12);
 				m_pListItems.push_back(item);
 				break;
-				break;
 			}
 			case (int)ItemType::GUN_4: {
 				texture = ResourceManagers::GetInstance()->GetTexture("Gun/Gun4.png");
@@ -124,6 +123,19 @@ void GSPlay::Init()
 				item->SetSize(32, 12);
 				m_pListItems.push_back(item);
 				break;
+			}
+			case (int)ItemType::IN_DOOR: {
+				texture = ResourceManagers::GetInstance()->GetTexture("GUI/indoor.png");
+				m_pIndoor = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::IN_DOOR);
+				m_pIndoor->Set2DPosition(j * 64, i * 64);
+				m_pIndoor->SetSize(64, 64);
+				break;
+			}
+			case (int)ItemType::OUT_DOOR: {
+				texture = ResourceManagers::GetInstance()->GetTexture("GUI/outdoor.png");
+				m_pOutdoor = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::OUT_DOOR);
+				m_pOutdoor->Set2DPosition(j * 64, i * 64);
+				m_pOutdoor->SetSize(64, 64);
 				break;
 			}
 			}
@@ -349,7 +361,7 @@ void GSPlay::Update(float deltaTime)
 			count++;
 		}
 	}
-	if (count== m_listMonster.size()) {
+	if (m_pIsWin == true) {
 		if (GSPlay::getLevel() == 6) {
 			GameStateMachine::GetInstance()->ChangeState(StateType::STATE_MENU);
 		}
@@ -370,7 +382,12 @@ void GSPlay::Update(float deltaTime)
 
 void GSPlay::Draw(SDL_Renderer* renderer)
 {
+
 	m_background->Draw(renderer);
+
+	m_pIndoor->Draw(renderer);
+
+	m_pOutdoor->Draw(renderer);
 
 	m_player->Draw(renderer);
 
@@ -430,4 +447,9 @@ int GSPlay::getLevel()
 void GSPlay::HandleCollision(float deltaTime)
 {
 	m_player->HandleCollison(m_StaticMap, m_listMonster,m_pListItems, deltaTime);
+
+	if (sqrt((pow(abs(m_player->Get2DPosition().x - m_pOutdoor->Get2DPosition().x), 2) + pow(abs(m_player->Get2DPosition().y - m_pOutdoor->Get2DPosition().y), 2))) <= 48) {
+		m_pIsWin = true;
+	}
+
 }

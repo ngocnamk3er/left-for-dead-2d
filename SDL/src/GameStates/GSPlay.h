@@ -54,6 +54,9 @@ private:
 	std::shared_ptr<Projectile> m_projectile;
 	std::shared_ptr<Gun> m_gun;
 	std::list<std::shared_ptr<Item>> m_pListItems;
+	std::shared_ptr<Item> m_pIndoor;
+	std::shared_ptr<Item> m_pOutdoor;
+	bool m_pIsWin = false;
 	std::shared_ptr<MouseButton> button;
 	AimMouse aimMouse;
 	float time = 0.0f;
@@ -63,7 +66,5 @@ private:
 	std::vector<std::vector<int>> m_DynamicMap;
 	std::vector<std::vector<int>> m_StaticMap;
 	static int s_pLevel;
-
-
 	void	HandleCollision(float deltaTime);
 };
