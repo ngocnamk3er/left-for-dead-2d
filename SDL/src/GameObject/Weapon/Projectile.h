@@ -11,6 +11,9 @@ public:
 	void Update(float deltatime);
 	void UpdatePos(float deltatime);
 	virtual void Draw(SDL_Renderer* renderer);
+	int GetWidth();
+	int GetHeight();
+	void SetSpeed(float speed);
 protected:
 	float m_speed;
 };

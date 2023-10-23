@@ -33,10 +33,7 @@ void Gun::DrawListProjectile(SDL_Renderer* renderer)
 {
 	for each (auto projectile in m_listProjectile)
 	{
-		if (!projectile->IsHidden()) {
-			
-			projectile->Draw(renderer);
-		}
+		projectile->Draw(renderer);
 	}
 }
 

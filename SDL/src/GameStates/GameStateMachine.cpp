@@ -62,7 +62,7 @@ void  GameStateMachine::PerformStateChange()
 	if (m_pNextState != 0)
 	{
 		if (m_StateStack.empty() == false) {
-			if (m_pActiveState->GetGameStateType() == StateType::STATE_INTRO || m_pActiveState->GetGameStateType() == StateType::STATE_PLAY)
+			if (m_pActiveState->GetGameStateType() == StateType::STATE_INTRO || m_pActiveState->GetGameStateType() == StateType::STATE_PLAY || m_pActiveState->GetGameStateType() == StateType::STATE_OVER)
 			{
 				// Cleanup Intro state
 				m_pActiveState->Exit();

@@ -4,6 +4,7 @@
 #include "GameObject/MouseButton.h"
 #include "GameObject/SpriteAnimation.h"
 #include "GameObject/Camera.h"
+#include "GameStates/GSSelectLevel.h"
 #include "KeyState.h"
 #include <iostream>
 #include <fstream>
@@ -27,7 +28,7 @@ void GSPlay::Init()
 {
 	LoadCSV(s_pLevel);
 	//auto model = ResourceManagers::GetInstance()->GetModel("Sprite2D.nfg");
-	auto texture = ResourceManagers::GetInstance()->GetTexture("Map/map"+std::to_string(s_pLevel)+".jpg");
+	auto texture = ResourceManagers::GetInstance()->GetTexture("Map/map" + std::to_string(s_pLevel) + ".jpg");
 
 	// background
 	m_background = std::make_shared<Sprite2D>(texture, SDL_FLIP_NONE);
@@ -55,7 +56,7 @@ void GSPlay::Init()
 	texture = ResourceManagers::GetInstance()->GetTexture("MainCharacter/3 Dude_Monster/Dude_Monster_Run_6.png");
 	m_player = std::make_shared<Player>(texture, 1, 6, 1, 0.15f);
 	m_player->SetSize(64, 64);
-	m_player->Set2DPosition(240, 400);
+	m_player->Set2DPosition(0, 64);
 	//Camera::GetInstance()->SetTarget(obj);
 	//m_listAnimation.push_back(obj);
 
@@ -67,29 +68,74 @@ void GSPlay::Init()
 		{
 			switch (m_DynamicMap[i][j])
 			{
-			case 11: {
-				printf("checkkkkkk\n");
+			case (int)MonsterType::MONSTER1: {
 				obj_monster = Monster::CreateMonster(MonsterType::MONSTER1);
 				obj_monster->Set2DPosition(j * 64, i * 64);
 				m_listMonster.push_back(obj_monster);
 				break;
 			}
-			case 22: {
+			case (int)MonsterType::MONSTER2: {
 				obj_monster = Monster::CreateMonster(MonsterType::MONSTER2);
 				obj_monster->Set2DPosition(j * 64, i * 64);
 				m_listMonster.push_back(obj_monster);
 				break;
 			}
-			case 33: {
+			case (int)MonsterType::MONSTER3: {
 				obj_monster = Monster::CreateMonster(MonsterType::MONSTER3);
 				obj_monster->Set2DPosition(j * 64, i * 64);
 				m_listMonster.push_back(obj_monster);
 				break;
 			}
-			case 44: {
+			case (int)MonsterType::MONSTER4: {
 				obj_monster = Monster::CreateMonster(MonsterType::MONSTER4);
 				obj_monster->Set2DPosition(j * 64, i * 64);
 				m_listMonster.push_back(obj_monster);
+				break;
+			}
+			case (int)ItemType::GUN_1: {
+				texture = ResourceManagers::GetInstance()->GetTexture("Gun/Gun1.png");
+				std::shared_ptr<Item> item = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::GUN_1);
+				item->Set2DPosition(j * 64 + 16, i * 64 + 32);
+				item->SetSize(32, 12);
+				m_pListItems.push_back(item);
+				break;
+			}
+			case (int)ItemType::GUN_2: {
+				texture = ResourceManagers::GetInstance()->GetTexture("Gun/Gun2.png");
+				std::shared_ptr<Item> item = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::GUN_2);
+				item->Set2DPosition(j * 64 + 16, i * 64 + 32);
+				item->SetSize(32, 12);
+				m_pListItems.push_back(item);
+				break;
+			}
+			case (int)ItemType::GUN_3: {
+				texture = ResourceManagers::GetInstance()->GetTexture("Gun/Gun3.png");
+				std::shared_ptr<Item> item = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::GUN_3);
+				item->Set2DPosition(j * 64 + 16, i * 64 + 32);
+				item->SetSize(32, 12);
+				m_pListItems.push_back(item);
+				break;
+			}
+			case (int)ItemType::GUN_4: {
+				texture = ResourceManagers::GetInstance()->GetTexture("Gun/Gun4.png");
+				std::shared_ptr<Item> item = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::GUN_4);
+				item->Set2DPosition(j * 64 + 16, i * 64 + 32);
+				item->SetSize(32, 12);
+				m_pListItems.push_back(item);
+				break;
+			}
+			case (int)ItemType::IN_DOOR: {
+				texture = ResourceManagers::GetInstance()->GetTexture("GUI/indoor.png");
+				m_pIndoor = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::IN_DOOR);
+				m_pIndoor->Set2DPosition(j * 64, i * 64);
+				m_pIndoor->SetSize(64, 64);
+				break;
+			}
+			case (int)ItemType::OUT_DOOR: {
+				texture = ResourceManagers::GetInstance()->GetTexture("GUI/outdoor.png");
+				m_pOutdoor = std::make_shared<Item>(texture, SDL_FLIP_NONE, ItemType::OUT_DOOR);
+				m_pOutdoor->Set2DPosition(j * 64, i * 64);
+				m_pOutdoor->SetSize(64, 64);
 				break;
 			}
 			}
@@ -130,7 +176,7 @@ void GSPlay::LoadCSV(int level)
 {
 
 	//make dynamic map
-	std::ifstream file("Data/Map/dynamicmap"+std::to_string(s_pLevel)+".csv");
+	std::ifstream file("Data/Map/dynamicmap" + std::to_string(s_pLevel) + ".csv");
 	if (!file.is_open()) {
 		std::cerr << "Can not open CSV." << std::endl;
 		return;
@@ -301,12 +347,12 @@ void GSPlay::Update(float deltaTime)
 	for (auto it : m_listMonster)
 	{
 		if (!it->IsHidden()) {
-			it->Update(deltaTime);
+			it->Update(deltaTime, m_player->Get2DPosition(), m_StaticMap);
 		}
 	}
 
-	m_player->Update(deltaTime, m_KeyPress, aimMouse,m_StaticMap);
-	
+	m_player->Update(deltaTime, m_KeyPress, aimMouse, m_StaticMap);
+
 
 	int count = 0;
 	for each (auto monster in m_listMonster)
@@ -315,17 +361,35 @@ void GSPlay::Update(float deltaTime)
 			count++;
 		}
 	}
-	/*if (count== m_listMonster.size()) {
-		GSPlay::setLevel(GSPlay::getLevel() + 1);
-		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
-	}*/
+	if (m_pIsWin == true) {
+		if (GSPlay::getLevel() == 6) {
+			GameStateMachine::GetInstance()->ChangeState(StateType::STATE_MENU);
+		}
+		else {
+			GSPlay::setLevel(GSPlay::getLevel() + 1);
+			if (GSPlay::getLevel() > GSSelectLevel::GetLevel()) {
+				GSSelectLevel::InCreCurrentLevel();
+			}
+			GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
+		}
+	}
 	HandleCollision(deltaTime);
+	if (m_player->GetHealth() <= 0) {
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_OVER);
+	}
 
 }
 
 void GSPlay::Draw(SDL_Renderer* renderer)
 {
+
 	m_background->Draw(renderer);
+
+	m_pIndoor->Draw(renderer);
+
+	m_pOutdoor->Draw(renderer);
+
+	m_player->Draw(renderer);
 
 	for (auto it : m_listMonster)
 	{
@@ -334,12 +398,37 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 		}
 	}
 
-	m_player->Draw(renderer);
+	for (auto it : m_pListItems)
+	{
+		it->Draw(renderer);
+	}
+
 	for (auto it : m_listButton)
 	{
 		it->Draw(renderer);
 	}
-	//m_projectile->Draw(renderer);
+	//Draw thanh mau
+	DrawHealthBar(renderer);
+}
+
+void GSPlay::DrawHealthBar(SDL_Renderer* renderer)
+{
+	SDL_Rect rectangle;
+	rectangle.x = m_player->Get2DPosition().x;
+	rectangle.y = m_player->Get2DPosition().y - 6;
+	rectangle.w = 64;
+	rectangle.h = 6;
+
+	SDL_Rect rectangle2;
+	rectangle2.x = m_player->Get2DPosition().x;
+	rectangle2.y = m_player->Get2DPosition().y - 6;
+	rectangle2.w = m_player->GetHealth() / 10 * 64;
+	rectangle2.h = 6;
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 1);
+	SDL_RenderDrawRect(renderer, &rectangle);
+	SDL_RenderFillRect(renderer, &rectangle2);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 }
 
 
@@ -357,5 +446,10 @@ int GSPlay::getLevel()
 
 void GSPlay::HandleCollision(float deltaTime)
 {
-	m_player->HandleCollison(m_StaticMap, m_listMonster, deltaTime);
+	m_player->HandleCollison(m_StaticMap, m_listMonster,m_pListItems, deltaTime);
+
+	if (sqrt((pow(abs(m_player->Get2DPosition().x - m_pOutdoor->Get2DPosition().x), 2) + pow(abs(m_player->Get2DPosition().y - m_pOutdoor->Get2DPosition().y), 2))) <= 48) {
+		m_pIsWin = true;
+	}
+
 }

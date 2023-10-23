@@ -3,12 +3,12 @@
 #include "GameObject/MouseButton.h"
 #include"GameObject/Text.h"
 #include "GameObject/Sound.h"
-class GSSelectLevel :
+class GSSetting :
 	public GameStateBase
 {
 public:
-	GSSelectLevel();
-	~GSSelectLevel();
+	GSSetting();
+	~GSSetting();
 
 	void	Init() override;
 	void	Exit() override;
@@ -24,10 +24,6 @@ public:
 	void	HandleMouseMoveEvents(int x, int y) override;
 	void	Update(float deltaTime) override;
 	void	Draw(SDL_Renderer* renderer) override;
-	void static	LoadCSV();
-	void static SaveCSV();
-	void static InCreCurrentLevel();
-	int static GetLevel();
 private:
 	std::shared_ptr<Sprite2D>				m_background;
 	std::list<std::shared_ptr<MouseButton>>	m_listButton;
@@ -36,5 +32,4 @@ private:
 	TTF_Font* m_Font;
 	SDL_Surface* cursorIcon;
 	SDL_Cursor* customCursor;
-	static int m_pCurrentLevel;
 };
