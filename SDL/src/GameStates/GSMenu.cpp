@@ -54,11 +54,11 @@ void GSMenu::Init()
 	btnOption->SetSize(200, 50);
 	btnOption->Set2DPosition((SCREEN_WIDTH - btnPlay->GetWidth()) / 2, (SCREEN_HEIDHT - btnPlay->GetHeight()) / 2 + 100);
 	btnOption->SetOnClick([]() {
-		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_OPTION);
+		GameStateMachine::GetInstance()->ChangeState(StateType::STATE_SETTING);
 		});
 	m_listButton.push_back(btnOption);
 
-	//CREDIT game
+	//Help game
 	texture = ResourceManagers::GetInstance()->GetTexture("GUI/menuButton.png");
 	btnCredit = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, "Help");
 	btnCredit->Set2DPosition((SCREEN_WIDTH - btnPlay->GetWidth()) / 2, (SCREEN_HEIDHT - btnPlay->GetHeight()) / 2 + 200);
@@ -78,7 +78,7 @@ void GSMenu::Init()
 	m_textGameName->LoadFromRenderText("LEFT 4 DEAD 2D");
 	m_Sound = std::make_shared<Sound>();
 	m_Sound->LoadSound("Data/Sounds/Alarm01.wav");
-	//m_Sound->PlaySound();
+	m_Sound->PlaySound();
 
 	//cursorIcon = IMG_Load("Data/Textures/GUI/cursorImage.png");
 	//customCursor = SDL_CreateColorCursor(cursorIcon, 0, 0);
@@ -101,13 +101,11 @@ void GSMenu::Exit()
 void GSMenu::Pause()
 {
 	m_Sound->StopSound();
-	// button close
-
 }
 
 void GSMenu::Resume()
 {
-	//m_Sound->PlaySound();
+	m_Sound->PlaySound();
 	SDL_SetCursor(customCursor);
 }
 
