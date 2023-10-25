@@ -37,7 +37,6 @@ public:
 	void	HandleMouseMoveEvents(int x, int y) override;
 	void	Update(float deltaTime) override;
 	void	Draw(SDL_Renderer* renderer) override;
-	void	DrawHealthBar(SDL_Renderer* renderer);
 	static void setLevel(int level);
 	static int getLevel();
 	KeySet m_KeyPress;

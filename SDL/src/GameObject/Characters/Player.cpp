@@ -3,6 +3,8 @@
 #include <iostream>
 #include <Point.h>
 #include "Define.h"
+#define MAX_ATTACK_DISTANCE 192
+
 
 #define ONE_RAD 180
 
@@ -37,6 +39,7 @@ void Player::Draw(SDL_Renderer* renderer)
 {
 	SpriteAnimation::Draw(renderer);
 	DrawGun(renderer);
+	DrawHealthBar(renderer);
 }
 void	Player::UpdatePos(float deltatime) {
 	m_position.x = m_position.x + deltatime * m_pSpeedX;
@@ -82,6 +85,27 @@ void Player::DrawGun(SDL_Renderer* renderer)
 	m_gun->Draw(renderer);
 }
 
+void Player::DrawHealthBar(SDL_Renderer* renderer)
+{
+	SDL_Rect rectangle;
+	rectangle.x = m_position.x;
+	rectangle.y = m_position.y - 6;
+	rectangle.w = 64;
+	rectangle.h = 6;
+
+	SDL_Rect rectangle2;
+	rectangle2.x = m_position.x;
+	rectangle2.y = m_position.y - 6;
+	rectangle2.w = m_pHealth / 10 * 64;
+	rectangle2.h = 6;
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 1);
+	SDL_RenderDrawRect(renderer, &rectangle);
+	SDL_RenderFillRect(renderer, &rectangle2);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+}
+
+
 void Player::PullTrigger()
 {
 	m_gun->Shot();
@@ -109,7 +133,7 @@ void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<s
 			{
 				if (!monster->IsHidden()) {
 					if (sqrt((pow(abs(monster->Get2DPosition().x - prjtile->Get2DPosition().x), 2) + pow(abs(monster->Get2DPosition().y - prjtile->Get2DPosition().y), 2))) <= 48) {
-						monster->SetHidden(true);
+						monster->DecreHealth();
 						prjtile->SetHidden(true);
 					}
 				}
@@ -122,6 +146,9 @@ void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<s
 				prjtile->SetHidden(true);
 			}
 			else if (StaticMap[(int)((prjtile->Get2DPosition().y + prjtile->GetHeight() / 2) / 64)][(int)((prjtile->Get2DPosition().x + prjtile->GetWidth() / 2) / 64)] != 15) {
+				prjtile->SetHidden(true);
+			}
+			else if (sqrt((pow(abs(m_position.x - prjtile->Get2DPosition().x), 2) + pow(abs(m_position.y - prjtile->Get2DPosition().y), 2))) >= MAX_ATTACK_DISTANCE ) {
 				prjtile->SetHidden(true);
 			}
 		}

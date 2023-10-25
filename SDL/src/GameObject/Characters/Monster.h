@@ -21,7 +21,10 @@ public:
 	static void Init();
 	virtual void Update(float deltatime, Vector2 playerPos, std::vector<std::vector<int>> StaticMap);
 	virtual void UpdatePos(float deltatime);
+	void	Draw(SDL_Renderer* renderer) override;
+	void	DrawHealthBar(SDL_Renderer* renderer);
 	static std::shared_ptr<Monster> CreateMonster(MonsterType stt);
+	void DecreHealth();
 	float GetDame();
 private:
 	static std::shared_ptr<TextureManager> Monster::textureMonster1;
@@ -30,11 +33,13 @@ private:
 	static std::shared_ptr<TextureManager> Monster::textureMonster4;
 protected:
 	int m_speed;
-	bool m_pIsHidden;
 	void SetVelocity(Vector2 playerPos, std::vector<std::vector<int>> StaticMap, float deltatime);
 	void SetSpeed(Vector2 playerPos);
 	float m_VelocityX;
 	float m_VelocityY;
+	float m_pHealth;
+	float m_pMaxHealth;
+	float m_pMaxSpeed;
 	Hitbox m_pHitbox;
 	void UpdateHitbox();
 	float m_pDame;

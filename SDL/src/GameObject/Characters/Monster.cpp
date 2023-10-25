@@ -7,21 +7,22 @@
 #include "cmath"
 #include "Point.h"
 
-#define ATTACK_DISTANCE 192
+#define ATTACK_DISTANCE 320
 #define ONE_RAD 180
 
 
 Monster::Monster(std::shared_ptr<TextureManager> texture, int spriteRow, int frameCount, int numAction, float frameTime) : SpriteAnimation(texture, spriteRow, frameCount, numAction, frameTime)
 {
-	m_speed = 90;
+	//m_speed = 90;
 	m_iWidth = 64;
 	m_iHeight = 64;
-	m_pIsHidden = false;
 	m_angle = 0;
 	m_pHitbox = { 0,0,0,0 };
 	m_pHitbox.width = 48;
 	m_pHitbox.height = 48;
 	m_pDame = 1;
+	m_pMaxHealth = 5;
+	m_pHealth = m_pMaxHealth;
 }
 
 Monster::~Monster()
@@ -48,12 +49,39 @@ void Monster::Update(float deltatime, Vector2 playerPos, std::vector<std::vector
 	SetVelocity(playerPos, StaticMap, deltatime);
 	UpdatePos(deltatime);
 	UpdateAnimation(deltatime);
+
 };
 void Monster::UpdatePos(float deltatime)
 {
-	m_position.x = m_position.x + m_VelocityX * deltatime; 
+	m_position.x = m_position.x + m_VelocityX * deltatime;
 	m_position.y = m_position.y + m_VelocityY * deltatime;
 	UpdateHitbox();
+}
+
+void Monster::Draw(SDL_Renderer* renderer)
+{
+	SpriteAnimation::Draw(renderer);
+	DrawHealthBar(renderer);
+}
+
+void Monster::DrawHealthBar(SDL_Renderer* renderer)
+{
+	SDL_Rect rectangle;
+	rectangle.x = m_position.x;
+	rectangle.y = m_position.y - 6;
+	rectangle.w = 64;
+	rectangle.h = 6;
+
+	SDL_Rect rectangle2;
+	rectangle2.x = m_position.x;
+	rectangle2.y = m_position.y - 6;
+	rectangle2.w = m_pHealth / m_pMaxHealth * 64;
+	rectangle2.h = 6;
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 1);
+	SDL_RenderDrawRect(renderer, &rectangle);
+	SDL_RenderFillRect(renderer, &rectangle2);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 }
 
 void Monster::UpdateHitbox()
@@ -64,7 +92,7 @@ void Monster::UpdateHitbox()
 
 void Monster::SetSpeed(Vector2 playerPos) {
 	if (sqrt((pow(abs(m_position.x - playerPos.x), 2) + pow(abs(m_position.y - playerPos.y), 2))) <= ATTACK_DISTANCE) {
-		m_speed = 90;
+		m_speed = m_pMaxSpeed;
 	}
 	else {
 		m_speed = 0;
@@ -79,8 +107,8 @@ void Monster::SetVelocity(Vector2 playerPos, std::vector<std::vector<int>> Stati
 
 	double angleDegrees = angleRadians * ONE_RAD / M_PI;
 
-	if ((float)(playerPos.x -  m_position.x < 0)) {
-		if (playerPos.y - m_position.y  < 0) {
+	if ((float)(playerPos.x - m_position.x < 0)) {
+		if (playerPos.y - m_position.y < 0) {
 			angleDegrees = angleDegrees - ONE_RAD;
 		}
 		else {
@@ -88,8 +116,8 @@ void Monster::SetVelocity(Vector2 playerPos, std::vector<std::vector<int>> Stati
 		}
 	}
 
-	m_VelocityX = m_speed  * cos(angleDegrees / ONE_RAD * M_PI);
-	m_VelocityY = m_speed  * sin(angleDegrees / ONE_RAD * M_PI);
+	m_VelocityX = m_speed * cos(angleDegrees / ONE_RAD * M_PI);
+	m_VelocityY = m_speed * sin(angleDegrees / ONE_RAD * M_PI);
 
 
 	Point LeftTop = { m_pHitbox.x, m_pHitbox.y };
@@ -145,7 +173,7 @@ std::shared_ptr<Monster> Monster::CreateMonster(MonsterType stt)
 	{
 	case MonsterType::MONSTER1:
 	{
-		std::shared_ptr<TextureManager> textureMonster1 =  ResourceManagers::GetInstance()->GetTexture("Monsters/Monster1.png");
+		std::shared_ptr<TextureManager> textureMonster1 = ResourceManagers::GetInstance()->GetTexture("Monsters/Monster1.png");
 		monster = std::make_shared<Monster1>(textureMonster1, 1, 18, 1, 0.1f);
 		break;
 	}
@@ -171,4 +199,12 @@ std::shared_ptr<Monster> Monster::CreateMonster(MonsterType stt)
 		break;
 	}
 	return monster;
+}
+
+void Monster::DecreHealth()
+{
+	m_pHealth = m_pHealth - 1;
+	if (m_pHealth < 0) {
+		m_pIsHidden = true;
+	}
 }

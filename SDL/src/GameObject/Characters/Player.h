@@ -27,6 +27,7 @@ public:
 private:
 	void SetGunAngle(AimMouse aimMouse);
 	void DrawGun(SDL_Renderer* renderer);
+	void DrawHealthBar(SDL_Renderer* renderer);
 	std::shared_ptr<Gun> m_gun;
 	float m_pSpeedX = 0;
 	float m_pSpeedY = 0;

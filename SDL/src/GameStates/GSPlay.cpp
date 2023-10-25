@@ -391,7 +391,7 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 
 	m_player->Draw(renderer);
 
-	for (auto it : m_listMonster)
+	for (std::shared_ptr<Monster> it : m_listMonster)
 	{
 		if (!it->IsHidden()) {
 			it->Draw(renderer);
@@ -408,27 +408,7 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 		it->Draw(renderer);
 	}
 	//Draw thanh mau
-	DrawHealthBar(renderer);
-}
-
-void GSPlay::DrawHealthBar(SDL_Renderer* renderer)
-{
-	SDL_Rect rectangle;
-	rectangle.x = m_player->Get2DPosition().x;
-	rectangle.y = m_player->Get2DPosition().y - 6;
-	rectangle.w = 64;
-	rectangle.h = 6;
-
-	SDL_Rect rectangle2;
-	rectangle2.x = m_player->Get2DPosition().x;
-	rectangle2.y = m_player->Get2DPosition().y - 6;
-	rectangle2.w = m_player->GetHealth() / 10 * 64;
-	rectangle2.h = 6;
-
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 1);
-	SDL_RenderDrawRect(renderer, &rectangle);
-	SDL_RenderFillRect(renderer, &rectangle2);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	//DrawHealthBar(renderer);
 }
 
 
