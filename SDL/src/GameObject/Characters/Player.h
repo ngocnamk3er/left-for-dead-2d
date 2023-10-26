@@ -35,6 +35,6 @@ private:
 	float m_pSpeedY = 0;
 	Hitbox m_pHitbox;
 	void UpdateHitbox();
-	float m_pHealth = 10;
+	float m_pHealth = 5;
 
 };
