@@ -113,6 +113,7 @@ void Sound::PlaySfx(unsigned int sfx, int repeat)
 void Sound::CleanUp()
 {
     //Free Music
+    printf("huy doi tuong soung");
 	for (auto it = sfxs.begin(); it != sfxs.end(); it++)
 	{
 		Mix_FreeChunk(*it);

@@ -15,7 +15,7 @@ GSSelectLevel::~GSSelectLevel()
 	printf("Huy doi truong GSSelectLevel\n");
 }
 
-int GSSelectLevel::m_pCurrentLevel;
+int GSSelectLevel::m_pHighestLevel;
 
 void GSSelectLevel::Init()
 {
@@ -49,7 +49,7 @@ void GSSelectLevel::Init()
 	{
 		for (int j = 1; j <= 3; j++) 
 		{
-			if ((i - 1) * 3 + j <= m_pCurrentLevel) {
+			if ((i - 1) * 3 + j <= m_pHighestLevel) {
 				texture = ResourceManagers::GetInstance()->GetTexture("GUI/Button.png");
 				std::shared_ptr<MouseButton> btnSelectLevelI = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, std::to_string((i - 1)*3+j))	;
 				//btnClose = std::make_shared<MouseButton>(texture);
@@ -75,8 +75,8 @@ void GSSelectLevel::LoadCSV()
 		std::string line;
 		if (std::getline(file, line)) {
 			try {
-				m_pCurrentLevel = std::stoi(line);
-				std::cout << "Curent Level: " << m_pCurrentLevel << std::endl;
+				m_pHighestLevel = std::stoi(line);
+				std::cout << "Curent Level: " << m_pHighestLevel << std::endl;
 			}
 			catch (const std::invalid_argument& e) {
 				std::cerr << "Cant convert to int: " << std::endl;
@@ -96,7 +96,7 @@ void GSSelectLevel::LoadCSV()
 
 void GSSelectLevel::SaveCSV()
 {
-	int number_to_save = m_pCurrentLevel;
+	int number_to_save = m_pHighestLevel;
 	std::string file_path = "Data/data.txt"; 
 
 	std::ofstream file(file_path, std::ios::out | std::ios::trunc);
@@ -113,14 +113,14 @@ void GSSelectLevel::SaveCSV()
 	return;
 }
 
-void GSSelectLevel::InCreCurrentLevel()
+void GSSelectLevel::InCreHighestLevel()
 {
-	m_pCurrentLevel++;
+	m_pHighestLevel++;
 }
 
-int GSSelectLevel::GetLevel()
+int GSSelectLevel::GetHighestLevel()
 {
-	return m_pCurrentLevel;
+	return m_pHighestLevel;
 }
 
 void GSSelectLevel::Exit()
@@ -142,7 +142,7 @@ void GSSelectLevel::Resume()
 	{
 		for (int j = 1; j <= 3; j++)
 		{
-			if ((i - 1) * 3 + j <= m_pCurrentLevel) {
+			if ((i - 1) * 3 + j <= m_pHighestLevel) {
 				std::shared_ptr<TextureManager> texture = ResourceManagers::GetInstance()->GetTexture("GUI/Button.png");
 				std::shared_ptr<MouseButton> btnSelectLevelI = std::make_shared<MouseButton>(texture, SDL_FLIP_NONE, std::to_string((i - 1) * 3 + j));
 				//btnClose = std::make_shared<MouseButton>(texture);

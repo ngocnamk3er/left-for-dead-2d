@@ -26,8 +26,8 @@ public:
 	void	Draw(SDL_Renderer* renderer) override;
 	void static	LoadCSV();
 	void static SaveCSV();
-	void static InCreCurrentLevel();
-	int static GetLevel();
+	void static InCreHighestLevel();
+	int static GetHighestLevel();
 private:
 	std::shared_ptr<Sprite2D>				m_background;
 	std::list<std::shared_ptr<MouseButton>>	m_listButton;
@@ -36,5 +36,5 @@ private:
 	TTF_Font* m_Font;
 	SDL_Surface* cursorIcon;
 	SDL_Cursor* customCursor;
-	static int m_pCurrentLevel;
+	static int m_pHighestLevel;
 };

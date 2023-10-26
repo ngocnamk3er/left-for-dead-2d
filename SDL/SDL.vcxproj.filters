@@ -156,6 +156,9 @@
     <ClCompile Include="src\GameStates\GSSetting.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject\Weapon\Hit.cpp">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameObject\BaseObject.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="src\GameStates\GSSetting.h">
       <Filter>Source Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Weapon\Hit.h">
+      <Filter>Source Files\GameObjects\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
