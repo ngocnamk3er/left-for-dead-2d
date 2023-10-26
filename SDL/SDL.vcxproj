@@ -152,6 +152,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)SDLLib\include;$(ProjectDir)src;$(ProjectDir)src\GameManager;$(ProjectDir)src\GameObject;$(ProjectDir)src\GameStates;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
       <ForceConformanceInForLoopScope>false</ForceConformanceInForLoopScope>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -180,6 +181,7 @@
     <ClCompile Include="src\GameObject\Keyset.h" />
     <ClCompile Include="src\GameObject\MouseButton.cpp" />
     <ClCompile Include="src\GameObject\Renderer.cpp" />
+    <ClCompile Include="src\GameObject\Setting.cpp" />
     <ClCompile Include="src\GameObject\Sound.cpp" />
     <ClCompile Include="src\GameObject\Sprite2D.cpp" />
     <ClCompile Include="src\GameObject\SpriteAnimation.cpp" />
@@ -228,6 +230,7 @@
     <ClInclude Include="src\GameObject\MouseButton.h" />
     <ClInclude Include="src\GameObject\Point.h" />
     <ClInclude Include="src\GameObject\Renderer.h" />
+    <ClInclude Include="src\GameObject\Setting.h" />
     <ClInclude Include="src\GameObject\Sound.h" />
     <ClInclude Include="src\GameObject\Sprite2D.h" />
     <ClInclude Include="src\GameObject\SpriteAnimation.h" />

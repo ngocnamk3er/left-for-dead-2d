@@ -79,3 +79,8 @@ void MouseButton::SetOnClick(std::function<void(void)> pBtClick)
 {
     m_pBtClick = pBtClick;
 }
+
+void MouseButton::SetText(std::string text)
+{
+    m_text = text;
+}

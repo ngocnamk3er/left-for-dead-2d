@@ -3,6 +3,8 @@
 #include <iostream>
 #include <Point.h>
 #include "Define.h"
+#include "Setting.h"
+
 #define MAX_ATTACK_DISTANCE 320
 
 
@@ -15,6 +17,8 @@ Player::Player(std::shared_ptr<TextureManager> texture, int spriteRow, int frame
 	m_pHitbox = { 0,0,0,0 };
 	m_pHitbox.width = 36;
 	m_pHitbox.height = 52;
+	m_Sound = std::make_shared<Sound>();
+	m_Sound->LoadSfx("Data/Sounds/SFX/firegun2.mp3");
 }
 Player::~Player()
 {
@@ -111,6 +115,9 @@ void Player::DrawHealthBar(SDL_Renderer* renderer)
 void Player::PullTrigger()
 {
 	m_gun->Shot();
+	if (Setting::sfx) {
+		m_Sound->PlaySfx(0, 0);
+	}
 }
 void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<std::shared_ptr<Monster>> listMonster, std::list<std::shared_ptr<Item>> listItems, float deltatime)
 {
