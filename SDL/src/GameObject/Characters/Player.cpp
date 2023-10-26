@@ -3,7 +3,7 @@
 #include <iostream>
 #include <Point.h>
 #include "Define.h"
-#define MAX_ATTACK_DISTANCE 192
+#define MAX_ATTACK_DISTANCE 320
 
 
 #define ONE_RAD 180
@@ -33,6 +33,7 @@ void	Player::Update(float deltatime, KeySet keyPress, AimMouse aimMouse, std::ve
 	SetGunAngle(aimMouse);
 	UpdateAnimation(deltatime);
 	m_gun->UpdatePjectile(deltatime);
+	m_gun->UpdateHits(deltatime);
 };
 
 void Player::Draw(SDL_Renderer* renderer)
@@ -40,6 +41,7 @@ void Player::Draw(SDL_Renderer* renderer)
 	SpriteAnimation::Draw(renderer);
 	DrawGun(renderer);
 	DrawHealthBar(renderer);
+
 }
 void	Player::UpdatePos(float deltatime) {
 	m_position.x = m_position.x + deltatime * m_pSpeedX;
@@ -132,9 +134,10 @@ void Player::HandleCollison(std::vector<std::vector<int>> StaticMap, std::list<s
 			for each (std::shared_ptr<Monster> monster in listMonster)
 			{
 				if (!monster->IsHidden()) {
-					if (sqrt((pow(abs(monster->Get2DPosition().x - prjtile->Get2DPosition().x), 2) + pow(abs(monster->Get2DPosition().y - prjtile->Get2DPosition().y), 2))) <= 48) {
+					if (sqrt((pow(abs(monster->Get2DPosition().x + 32 - prjtile->Get2DPosition().x - 16), 2) + pow(abs(monster->Get2DPosition().y + 32 - prjtile->Get2DPosition().y - 12), 2))) <= 32) {
 						monster->DecreHealth();
 						prjtile->SetHidden(true);
+						m_gun->AddHit(monster->Get2DPosition().x + 16, monster->Get2DPosition().y + 16);
 					}
 				}
 			}

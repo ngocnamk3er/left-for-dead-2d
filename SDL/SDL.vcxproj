@@ -191,6 +191,7 @@
     <ClCompile Include="src\GameObject\Weapon\Gun2.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Gun3.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Gun4.cpp" />
+    <ClCompile Include="src\GameObject\Weapon\Hit.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Projectile.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Projectile1.cpp" />
     <ClCompile Include="src\GameObject\Weapon\Projectile2.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="src\GameObject\Weapon\Gun2.h" />
     <ClInclude Include="src\GameObject\Weapon\Gun3.h" />
     <ClInclude Include="src\GameObject\Weapon\Gun4.h" />
+    <ClInclude Include="src\GameObject\Weapon\Hit.h" />
     <ClInclude Include="src\GameObject\Weapon\Projectile.h" />
     <ClInclude Include="src\GameObject\Weapon\Projectile1.h" />
     <ClInclude Include="src\GameObject\Weapon\Projectile2.h" />

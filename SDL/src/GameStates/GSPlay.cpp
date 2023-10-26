@@ -367,8 +367,8 @@ void GSPlay::Update(float deltaTime)
 		}
 		else {
 			GSPlay::setLevel(GSPlay::getLevel() + 1);
-			if (GSPlay::getLevel() > GSSelectLevel::GetLevel()) {
-				GSSelectLevel::InCreCurrentLevel();
+			if (GSPlay::getLevel() > GSSelectLevel::GetHighestLevel()) {
+				GSSelectLevel::InCreHighestLevel();
 			}
 			GameStateMachine::GetInstance()->ChangeState(StateType::STATE_PLAY);
 		}
@@ -389,7 +389,6 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 
 	m_pOutdoor->Draw(renderer);
 
-	m_player->Draw(renderer);
 
 	for (std::shared_ptr<Monster> it : m_listMonster)
 	{
@@ -398,6 +397,8 @@ void GSPlay::Draw(SDL_Renderer* renderer)
 		}
 	}
 
+	m_player->Draw(renderer);
+	
 	for (auto it : m_pListItems)
 	{
 		it->Draw(renderer);

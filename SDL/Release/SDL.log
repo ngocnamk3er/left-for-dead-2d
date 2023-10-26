@@ -1,0 +1,82 @@
+﻿  Game.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\Game.h(2,10): fatal  error C1083: Cannot open include file: 'MouseButton.h': No such file or directory
+  ResourceManagers.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameManager\ResourceManagers.h(5,10): fatal  error C1083: Cannot open include file: 'GameObject/TextureManager.h': No such file or directory
+  Camera.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\BaseObject.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Renderer.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/Singleton.h': No such file or directory
+  Monster.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Characters\Monster.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Monster1.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Characters\Monster.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Monster2.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Characters\Monster.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Monster3.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Characters\Monster.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Monster4.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Characters\Monster.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Player.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Characters\Player.h(2,10): fatal  error C1083: Cannot open include file: 'GameObject/SpriteAnimation.h': No such file or directory
+  CMath.cpp
+  Item.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Items\Item.h(2,10): fatal  error C1083: Cannot open include file: 'Sprite2D.h': No such file or directory
+  Keyset.h
+  MouseButton.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\BaseObject.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Renderer.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/Singleton.h': No such file or directory
+  Renderer.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Renderer.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/Singleton.h': No such file or directory
+  Sound.cpp
+  Sprite2D.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\BaseObject.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Renderer.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/Singleton.h': No such file or directory
+  SpriteAnimation.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\BaseObject.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Renderer.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/Singleton.h': No such file or directory
+  Text.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\BaseObject.h(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Renderer.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/Singleton.h': No such file or directory
+  TextureManager.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Renderer.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/Singleton.h': No such file or directory
+  Timer.cpp
+  Compiling...
+  Gun.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Gun.h(2,10): fatal  error C1083: Cannot open include file: 'Sprite2D.h': No such file or directory
+  Gun1.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Gun.h(2,10): fatal  error C1083: Cannot open include file: 'Sprite2D.h': No such file or directory
+  Gun2.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Gun.h(2,10): fatal  error C1083: Cannot open include file: 'Sprite2D.h': No such file or directory
+  Gun3.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Gun.h(2,10): fatal  error C1083: Cannot open include file: 'Sprite2D.h': No such file or directory
+  Gun4.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Gun.h(2,10): fatal  error C1083: Cannot open include file: 'Sprite2D.h': No such file or directory
+  Projectile.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Projectile.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Projectile1.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Projectile.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Projectile2.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Projectile.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Projectile3.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Projectile.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  Projectile4.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameObject\Weapon\Projectile.h(2,10): fatal  error C1083: Cannot open include file: 'SpriteAnimation.h': No such file or directory
+  GameStateBase.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GameStateMachine.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GSHelp.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GSIntro.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GSMenu.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GSOver.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GSPlay.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GSSelectLevel.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  GSSetting.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\GameStates\GameStateBase.h(4,10): fatal  error C1083: Cannot open include file: 'GameManager/ResourceManagers.h': No such file or directory
+  main.cpp
+E:\20231\INTERN_GAME\Thanh_Nam\SDL\src\Game.h(2,10): fatal  error C1083: Cannot open include file: 'MouseButton.h': No such file or directory
