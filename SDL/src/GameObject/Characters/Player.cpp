@@ -102,7 +102,7 @@ void Player::DrawHealthBar(SDL_Renderer* renderer)
 	SDL_Rect rectangle2;
 	rectangle2.x = m_position.x;
 	rectangle2.y = m_position.y - 6;
-	rectangle2.w = m_pHealth / 10 * 64;
+	rectangle2.w = m_pHealth / 5 * 64;
 	rectangle2.h = 6;
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 255, 1);
